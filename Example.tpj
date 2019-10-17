@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestProject>
+  <ProductVersion>4.5.0.21</ProductVersion>
+  <Name>Example</Name>
+  <Description />
+  <ApplicationType>WEBSITE</ApplicationType>
+  <TestSuiteNamingScheme>%WORKBOOK%.%WORKSHEET%.%BUILDCONFIG%.%RUNCONFIG%.%DATE%</TestSuiteNamingScheme>
+  <Defaults>
+    <DefaultTestSuite>debug</DefaultTestSuite>
+    <DefaultBuildConfig>Selenium</DefaultBuildConfig>
+    <DefaultRunConfig>Selenium_IE</DefaultRunConfig>
+  </Defaults>
+</TestProject>

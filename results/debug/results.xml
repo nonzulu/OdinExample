@@ -1,0 +1,2926 @@
+<?xml version="1.0"?>
+<testsuite version="3.5.0">
+  <AxeVersion>4.5.0.21</AxeVersion>
+  <name>Example</name>
+  <build>
+    <name>debug</name>
+    <id>
+    </id>
+    <config file="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\config\Selenium.BuildConfig.xml" name="Selenium" />
+    <buildtimestamp>2019/10/17 11:19:26</buildtimestamp>
+    <runtimestamp>2019/10/17 11:24:08</runtimestamp>
+    <run_master>
+      <test>
+        <index>1</index>
+        <id>OPLI001</id>
+        <description>Verify that an existing user can login ok</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>1</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:19:53</start>
+        <finish>2019/10/17 11:20:02</finish>
+        <time>9,6902177</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>2</index>
+        <id>OPLI010</id>
+        <description>Login as admin user and validate role</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>2</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:20:12</start>
+        <finish>2019/10/17 11:20:21</finish>
+        <time>8,4345886</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>3</index>
+        <id>OPLI020</id>
+        <description>Check that default login credentials are blank</description>
+        <datadriven>False</datadriven>
+        <result>Error</result>
+        <test_index>3</test_index>
+        <success>False</success>
+        <start>2019/10/17 11:20:39</start>
+        <finish>2019/10/17 11:20:39</finish>
+        <time>0</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>4</index>
+        <id>OPRG001</id>
+        <description>Verify registration of a new user - all possible info</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>4</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:20:48</start>
+        <finish>2019/10/17 11:20:56</finish>
+        <time>7,9721611</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>5</index>
+        <id>OPRG002</id>
+        <description>Verify registration of a new user - female</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>5</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:21:06</start>
+        <finish>2019/10/17 11:21:17</finish>
+        <time>11,4171815</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>6</index>
+        <id>OPRG003</id>
+        <description>Verify registration of a new user - title of Miss</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>6</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:21:26</start>
+        <finish>2019/10/17 11:21:39</finish>
+        <time>13,0903582</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>7</index>
+        <id>OPRG004</id>
+        <description>Verify registration of a new user - middle name</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>7</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:21:48</start>
+        <finish>2019/10/17 11:21:56</finish>
+        <time>7,9855029</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>8</index>
+        <id>OPRG005</id>
+        <description>Verify registration of a new user - default title</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>8</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:22:04</start>
+        <finish>2019/10/17 11:22:14</finish>
+        <time>9,4618669</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>9</index>
+        <id>OPRG010</id>
+        <description>Check default field values for new user registration</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>9</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:22:21</start>
+        <finish>2019/10/17 11:22:30</finish>
+        <time>9,02669</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>10</index>
+        <id>OPRG100_01</id>
+        <description>Register a new user and save password</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>10</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:22:40</start>
+        <finish>2019/10/17 11:22:49</finish>
+        <time>8,8326111</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>11</index>
+        <id>OPRG100_02</id>
+        <description>Login as a newly registered user</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>11</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:22:58</start>
+        <finish>2019/10/17 11:23:06</finish>
+        <time>7,902035</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>12</index>
+        <id>OPLO001</id>
+        <description>Verify that logout screen is displayed when logging off (expected Abort)</description>
+        <datadriven>False</datadriven>
+        <result>Aborted</result>
+        <test_index>12</test_index>
+        <success>False</success>
+        <start>2019/10/17 11:23:14</start>
+        <finish>2019/10/17 11:23:27</finish>
+        <time>13,0686823</time>
+        <image subtest_index="4" step_index="1" iteration_index="0">images/OPLO001_Abort_20191017112326806.jpg</image>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>13</index>
+        <id>OPAD001</id>
+        <description>Check that a logged in user can access the Account Details screen</description>
+        <datadriven>False</datadriven>
+        <result>Pass</result>
+        <test_index>13</test_index>
+        <success>True</success>
+        <start>2019/10/17 11:23:37</start>
+        <finish>2019/10/17 11:23:47</finish>
+        <time>9,987294</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <test>
+        <index>14</index>
+        <id>OPAD002</id>
+        <description>Check user account details are correct (expected Fail)</description>
+        <datadriven>False</datadriven>
+        <result>Fail</result>
+        <test_index>14</test_index>
+        <success>False</success>
+        <start>2019/10/17 11:23:57</start>
+        <finish>2019/10/17 11:24:08</finish>
+        <time>10,9560669</time>
+        <run>run_2019-10-17_11-19-42</run>
+      </test>
+      <testcount>14</testcount>
+      <passcount>11</passcount>
+      <failcount>2</failcount>
+      <errorcount>1</errorcount>
+      <notruncount>0</notruncount>
+      <success>false</success>
+    </run_master>
+    <run>
+      <name>run_2019-10-17_11-19-42</name>
+      <start>2019/10/17 11:19:53</start>
+      <finish>2019/10/17 11:24:08</finish>
+      <testcount>14</testcount>
+      <passcount>11</passcount>
+      <failcount>2</failcount>
+      <notruncount>0</notruncount>
+      <errorcount>1</errorcount>
+      <success>false</success>
+      <test>
+        <id>OPLI001</id>
+        <execution_id />
+        <description><![CDATA[Verify that an existing user can login ok]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:19:53</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:19:53</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:19:53</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:19:54</finish>
+            <time>1,1500649</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:19:54</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:19:54</start>
+              <finish>2019/10/17 11:19:55</finish>
+              <time>0,3087005</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:19:55</start>
+              <finish>2019/10/17 11:19:57</finish>
+              <time>1,8473916</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:19:57</finish>
+            <time>2,4306305</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withUser1</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Enter valid login credentials for an existing user]]></description>
+            <start>2019/10/17 11:19:57</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:19:57</start>
+              <finish>2019/10/17 11:19:58</finish>
+              <time>0,4194756</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:19:58</start>
+              <finish>2019/10/17 11:19:59</finish>
+              <time>0,9504478</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[abc123]]></data>
+              <start>2019/10/17 11:19:59</start>
+              <finish>2019/10/17 11:19:59</finish>
+              <time>0,4023256</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:19:59</start>
+              <finish>2019/10/17 11:20:00</finish>
+              <time>1,3451419</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:01</finish>
+            <time>3,8405187</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>4</testcount>
+            <passcount>4</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that the Home page is displayed]]></description>
+            <start>2019/10/17 11:20:01</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:01</start>
+              <finish>2019/10/17 11:20:01</finish>
+              <time>0,0900104</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:01</finish>
+            <time>0,3921805</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:20:02</finish>
+          <time>9,6902177</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:20:02</finish>
+        <time>9,6902177</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>1</index>
+        <outputfiles>
+          <outputfile name="OPLI001_out.txt" file="Logs/Example_20191017111942371/OPLI001_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPLI010</id>
+        <execution_id />
+        <description><![CDATA[Login as admin user and validate role]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:20:12</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:20:12</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:20:13</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:20:14</finish>
+            <time>0,9448284</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:20:14</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:14</start>
+              <finish>2019/10/17 11:20:14</finish>
+              <time>0,0821247</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:14</start>
+              <finish>2019/10/17 11:20:15</finish>
+              <time>1,1799592</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:15</finish>
+            <time>1,4249707</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withAdmin</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Login in as administrator]]></description>
+            <start>2019/10/17 11:20:15</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:15</start>
+              <finish>2019/10/17 11:20:16</finish>
+              <time>0,3216348</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[admin]]></data>
+              <start>2019/10/17 11:20:16</start>
+              <finish>2019/10/17 11:20:16</finish>
+              <time>0,3420045</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[xyz999]]></data>
+              <start>2019/10/17 11:20:16</start>
+              <finish>2019/10/17 11:20:17</finish>
+              <time>0,2414461</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:17</start>
+              <finish>2019/10/17 11:20:17</finish>
+              <time>0,7022538</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:17</finish>
+            <time>2,129539</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>4</testcount>
+            <passcount>4</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>checkAdmin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that logged in user is an administrator]]></description>
+            <start>2019/10/17 11:20:18</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:18</start>
+              <finish>2019/10/17 11:20:18</finish>
+              <time>0,162884</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Role]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[Administrator]]></data>
+              <start>2019/10/17 11:20:18</start>
+              <finish>2019/10/17 11:20:18</finish>
+              <time>0,1027365</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Role]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[Administrator]]></data>
+              <start>2019/10/17 11:20:18</start>
+              <expected><![CDATA[Administrator]]></expected>
+              <actual><![CDATA[Administrator]]></actual>
+              <finish>2019/10/17 11:20:18</finish>
+              <time>0,0867129</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:18</finish>
+            <time>0,6134908</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>3</testcount>
+            <passcount>3</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:20:21</finish>
+          <time>8,4345886</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:20:21</finish>
+        <time>8,4345886</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>2</index>
+        <outputfiles>
+          <outputfile name="OPLI010_out.txt" file="Logs/Example_20191017111942371/OPLI010_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPLI020</id>
+        <description>Check that default login credentials are blank</description>
+        <datadriven>False</datadriven>
+        <start>2019/10/17 11:20:39</start>
+        <finish>2019/10/17 11:20:39</finish>
+        <testcount>0</testcount>
+        <passcount>0</passcount>
+        <failcount>0</failcount>
+        <success>False</success>
+        <result>Error</result>
+        <index>3</index>
+        <outputfiles>
+          <outputfile name="OPLI020_out.txt" file="Logs/Example_20191017111942371/OPLI020_out.txt" />
+        </outputfiles>
+        <messages>
+          <message>20191017-11:20:39.759 Test result file for test OPLI020 is invalid XML. File=C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\testResults.xml
+The 'basestate' start tag on line 4 position 2 does not match the end tag of 'test'. Line 76, position 3.
+File saved to C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\TestResult_OPLI020_ERROR.xml</message>
+        </messages>
+        <time>0</time>
+      </test>
+      <test>
+        <id>OPRG001</id>
+        <execution_id />
+        <description><![CDATA[Verify registration of a new user - all possible info]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:20:48</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:20:48</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:20:49</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:20:50</finish>
+            <time>0,9561596</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:20:50</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:50</start>
+              <finish>2019/10/17 11:20:50</finish>
+              <time>0,0850451</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:50</start>
+              <finish>2019/10/17 11:20:51</finish>
+              <time>0,6600354</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:51</finish>
+            <time>0,8799532</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser1</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a new user with all possible information]]></description>
+            <start>2019/10/17 11:20:51</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:51</start>
+              <finish>2019/10/17 11:20:51</finish>
+              <time>0,0704856</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:20:51</start>
+              <finish>2019/10/17 11:20:51</finish>
+              <time>0,1925031</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Adam Brown]]></data>
+              <start>2019/10/17 11:20:51</start>
+              <finish>2019/10/17 11:20:52</finish>
+              <time>0,3966472</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:52</start>
+              <finish>2019/10/17 11:20:52</finish>
+              <time>0,1622795</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[01/12/1975]]></data>
+              <start>2019/10/17 11:20:52</start>
+              <finish>2019/10/17 11:20:52</finish>
+              <time>0,239522</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[a.brown@testing.com]]></data>
+              <start>2019/10/17 11:20:52</start>
+              <finish>2019/10/17 11:20:53</finish>
+              <time>0,476734</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[MailingList]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[1]]></data>
+              <start>2019/10/17 11:20:53</start>
+              <finish>2019/10/17 11:20:53</finish>
+              <time>0,2247079</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>8</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:53</start>
+              <finish>2019/10/17 11:20:54</finish>
+              <time>1,1498821</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:54</finish>
+            <time>3,3000019</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>8</testcount>
+            <passcount>8</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that registration has been successful]]></description>
+            <start>2019/10/17 11:20:54</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:20:54</start>
+              <finish>2019/10/17 11:20:55</finish>
+              <time>0,2794006</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:20:55</finish>
+            <time>0,5460559</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:20:56</finish>
+          <time>7,9721611</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:20:56</finish>
+        <time>7,9721611</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>4</index>
+        <outputfiles>
+          <outputfile name="OPRG001_out.txt" file="Logs/Example_20191017111942371/OPRG001_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG002</id>
+        <execution_id />
+        <description><![CDATA[Verify registration of a new user - female]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:21:06</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:21:06</start>
+          <basestate>
+            <index>1</index>
+            <action>Home</action>
+            <start>2019/10/17 11:21:06</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:21:07</finish>
+            <time>1,2894265</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:21:08</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:08</start>
+              <finish>2019/10/17 11:21:08</finish>
+              <time>0,3423991</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:08</start>
+              <finish>2019/10/17 11:21:09</finish>
+              <time>0,8107152</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:09</finish>
+            <time>1,690201</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser2</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a new female user]]></description>
+            <start>2019/10/17 11:21:09</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:09</start>
+              <finish>2019/10/17 11:21:09</finish>
+              <time>0,0969051</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Mrs]]></data>
+              <start>2019/10/17 11:21:10</start>
+              <finish>2019/10/17 11:21:10</finish>
+              <time>0,2372308</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Belinda Green]]></data>
+              <start>2019/10/17 11:21:10</start>
+              <finish>2019/10/17 11:21:10</finish>
+              <time>0,4504749</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Female]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:10</start>
+              <finish>2019/10/17 11:21:11</finish>
+              <time>0,2526976</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[03/08/1980]]></data>
+              <start>2019/10/17 11:21:11</start>
+              <finish>2019/10/17 11:21:11</finish>
+              <time>0,2752441</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[b.green@testing.com]]></data>
+              <start>2019/10/17 11:21:11</start>
+              <finish>2019/10/17 11:21:11</finish>
+              <time>0,4308704</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:11</start>
+              <finish>2019/10/17 11:21:13</finish>
+              <time>2,0769241</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:14</finish>
+            <time>4,3699989</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>7</testcount>
+            <passcount>7</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that registration has been successful]]></description>
+            <start>2019/10/17 11:21:14</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:14</start>
+              <finish>2019/10/17 11:21:16</finish>
+              <time>1,7797697</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:16</finish>
+            <time>2,0730602</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:21:17</finish>
+          <time>11,4171815</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:21:17</finish>
+        <time>11,4171815</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>5</index>
+        <outputfiles>
+          <outputfile name="OPRG002_out.txt" file="Logs/Example_20191017111942371/OPRG002_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG003</id>
+        <execution_id />
+        <description><![CDATA[Verify registration of a new user - title of Miss]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:21:26</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:21:26</start>
+          <basestate>
+            <index>1</index>
+            <action>Home</action>
+            <start>2019/10/17 11:21:27</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:21:28</finish>
+            <time>1,0929043</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:21:28</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:28</start>
+              <finish>2019/10/17 11:21:28</finish>
+              <time>0,3294067</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:28</start>
+              <finish>2019/10/17 11:21:30</finish>
+              <time>1,3266989</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:30</finish>
+            <time>1,9347314</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser3</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a new user with title of Miss]]></description>
+            <start>2019/10/17 11:21:30</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:30</start>
+              <finish>2019/10/17 11:21:30</finish>
+              <time>0,113598</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Miss]]></data>
+              <start>2019/10/17 11:21:30</start>
+              <finish>2019/10/17 11:21:30</finish>
+              <time>0,2439324</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Clare Black]]></data>
+              <start>2019/10/17 11:21:30</start>
+              <finish>2019/10/17 11:21:31</finish>
+              <time>0,3357974</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Female]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:31</start>
+              <finish>2019/10/17 11:21:31</finish>
+              <time>0,1485609</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[11/08/1985]]></data>
+              <start>2019/10/17 11:21:31</start>
+              <finish>2019/10/17 11:21:31</finish>
+              <time>0,257729</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[c.black@testing.com]]></data>
+              <start>2019/10/17 11:21:31</start>
+              <finish>2019/10/17 11:21:32</finish>
+              <time>0,4405029</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:32</start>
+              <finish>2019/10/17 11:21:36</finish>
+              <time>3,9046931</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:36</finish>
+            <time>6,0730326</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>7</testcount>
+            <passcount>7</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that registration has been successful]]></description>
+            <start>2019/10/17 11:21:36</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:36</start>
+              <finish>2019/10/17 11:21:37</finish>
+              <time>0,1847667</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:37</finish>
+            <time>0,5020296</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:21:39</finish>
+          <time>13,0903582</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:21:39</finish>
+        <time>13,0903582</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>6</index>
+        <outputfiles>
+          <outputfile name="OPRG003_out.txt" file="Logs/Example_20191017111942371/OPRG003_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG004</id>
+        <execution_id />
+        <description><![CDATA[Verify registration of a new user - middle name]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:21:48</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:21:48</start>
+          <basestate>
+            <index>1</index>
+            <action>Home</action>
+            <start>2019/10/17 11:21:48</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:21:49</finish>
+            <time>1,2796246</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:21:49</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:50</start>
+              <finish>2019/10/17 11:21:50</finish>
+              <time>0,3405977</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:50</start>
+              <finish>2019/10/17 11:21:51</finish>
+              <time>0,8201092</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:51</finish>
+            <time>1,5000477</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser4</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a new user with middle name]]></description>
+            <start>2019/10/17 11:21:51</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:51</start>
+              <finish>2019/10/17 11:21:51</finish>
+              <time>0,0700085</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Mrs]]></data>
+              <start>2019/10/17 11:21:51</start>
+              <finish>2019/10/17 11:21:51</finish>
+              <time>0,2199967</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[David John Gray]]></data>
+              <start>2019/10/17 11:21:51</start>
+              <finish>2019/10/17 11:21:52</finish>
+              <time>0,3792122</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:52</start>
+              <finish>2019/10/17 11:21:52</finish>
+              <time>0,2205345</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[25/11/1065]]></data>
+              <start>2019/10/17 11:21:52</start>
+              <finish>2019/10/17 11:21:53</finish>
+              <time>0,3700102</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[d.gray@testing.com]]></data>
+              <start>2019/10/17 11:21:53</start>
+              <finish>2019/10/17 11:21:53</finish>
+              <time>0,4217638</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:53</start>
+              <finish>2019/10/17 11:21:54</finish>
+              <time>0,9399899</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:54</finish>
+            <time>3,1105532</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>7</testcount>
+            <passcount>7</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that registration has been successful]]></description>
+            <start>2019/10/17 11:21:54</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:21:54</start>
+              <finish>2019/10/17 11:21:55</finish>
+              <time>0,3594484</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:21:55</finish>
+            <time>0,6405607</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:21:56</finish>
+          <time>7,9855029</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:21:56</finish>
+        <time>7,9855029</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>7</index>
+        <outputfiles>
+          <outputfile name="OPRG004_out.txt" file="Logs/Example_20191017111942371/OPRG004_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG005</id>
+        <execution_id />
+        <description><![CDATA[Verify registration of a new user - default title]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:22:04</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:22:04</start>
+          <basestate>
+            <index>1</index>
+            <action>Home</action>
+            <start>2019/10/17 11:22:05</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:22:06</finish>
+            <time>1,1595513</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:22:06</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:06</start>
+              <finish>2019/10/17 11:22:06</finish>
+              <time>0,2789414</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:06</start>
+              <finish>2019/10/17 11:22:08</finish>
+              <time>1,2307249</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:08</finish>
+            <time>1,8600237</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser5</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a new user with default title]]></description>
+            <start>2019/10/17 11:22:08</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:08</start>
+              <finish>2019/10/17 11:22:08</finish>
+              <time>0,3099562</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Eric Redford]]></data>
+              <start>2019/10/17 11:22:08</start>
+              <finish>2019/10/17 11:22:09</finish>
+              <time>0,3997886</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:09</start>
+              <finish>2019/10/17 11:22:09</finish>
+              <time>0,1899322</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[15/09/1972]]></data>
+              <start>2019/10/17 11:22:09</start>
+              <finish>2019/10/17 11:22:10</finish>
+              <time>0,3749646</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[e.redford@testing.com]]></data>
+              <start>2019/10/17 11:22:10</start>
+              <finish>2019/10/17 11:22:10</finish>
+              <time>0,4910894</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:10</start>
+              <finish>2019/10/17 11:22:12</finish>
+              <time>1,4389487</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:12</finish>
+            <time>3,9400459</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>6</testcount>
+            <passcount>6</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that registration has been successful]]></description>
+            <start>2019/10/17 11:22:12</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:12</start>
+              <finish>2019/10/17 11:22:12</finish>
+              <time>0,1895398</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:12</finish>
+            <time>0,4600065</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:22:14</finish>
+          <time>9,4618669</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:22:14</finish>
+        <time>9,4618669</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>8</index>
+        <outputfiles>
+          <outputfile name="OPRG005_out.txt" file="Logs/Example_20191017111942371/OPRG005_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG010</id>
+        <execution_id />
+        <description><![CDATA[Check default field values for new user registration]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:22:21</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:22:21</start>
+          <basestate>
+            <index>1</index>
+            <action>Home</action>
+            <start>2019/10/17 11:22:22</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:22:24</finish>
+            <time>1,5903348</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:22:24</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:24</start>
+              <finish>2019/10/17 11:22:24</finish>
+              <time>0,0931257</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:24</start>
+              <finish>2019/10/17 11:22:25</finish>
+              <time>0,7558879</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:25</finish>
+            <time>1,1253269</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>checkDefault</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check registration defaults]]></description>
+            <start>2019/10/17 11:22:25</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:25</start>
+              <finish>2019/10/17 11:22:25</finish>
+              <time>0,1693994</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:22:25</start>
+              <finish>2019/10/17 11:22:26</finish>
+              <time>0,3510712</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:22:26</start>
+              <expected><![CDATA[Mr]]></expected>
+              <actual><![CDATA[Mr]]></actual>
+              <finish>2019/10/17 11:22:26</finish>
+              <time>0,0968521</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:26</start>
+              <finish>2019/10/17 11:22:26</finish>
+              <time>0,0858114</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:26</start>
+              <expected><![CDATA[]]></expected>
+              <actual><![CDATA[]]></actual>
+              <finish>2019/10/17 11:22:26</finish>
+              <time>0,0904901</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:26</start>
+              <finish>2019/10/17 11:22:26</finish>
+              <time>0,1500218</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:26</start>
+              <expected><![CDATA[0]]></expected>
+              <actual><![CDATA[0]]></actual>
+              <finish>2019/10/17 11:22:27</finish>
+              <time>0,1376336</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>8</index>
+              <object><![CDATA[Female]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:27</start>
+              <finish>2019/10/17 11:22:27</finish>
+              <time>0,1504951</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>9</index>
+              <object><![CDATA[Female]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:27</start>
+              <expected><![CDATA[0]]></expected>
+              <actual><![CDATA[0]]></actual>
+              <finish>2019/10/17 11:22:27</finish>
+              <time>0,0890755</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>10</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:27</start>
+              <finish>2019/10/17 11:22:27</finish>
+              <time>0,1127179</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>11</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:27</start>
+              <expected><![CDATA[]]></expected>
+              <actual><![CDATA[]]></actual>
+              <finish>2019/10/17 11:22:27</finish>
+              <time>0,3751845</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>12</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:28</start>
+              <finish>2019/10/17 11:22:28</finish>
+              <time>0,1170698</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>13</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:28</start>
+              <expected><![CDATA[]]></expected>
+              <actual><![CDATA[]]></actual>
+              <finish>2019/10/17 11:22:28</finish>
+              <time>0,0994634</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>14</index>
+              <object><![CDATA[MailingList]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:28</start>
+              <finish>2019/10/17 11:22:28</finish>
+              <time>0,1337572</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>15</index>
+              <object><![CDATA[MailingList]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[0]]></data>
+              <start>2019/10/17 11:22:28</start>
+              <expected><![CDATA[0]]></expected>
+              <actual><![CDATA[0]]></actual>
+              <finish>2019/10/17 11:22:28</finish>
+              <time>0,2330422</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:28</finish>
+            <time>3,150867</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>15</testcount>
+            <passcount>15</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:22:30</finish>
+          <time>9,02669</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>2</testcount>
+          <passcount>2</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:22:30</finish>
+        <time>9,02669</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>9</index>
+        <outputfiles>
+          <outputfile name="OPRG010_out.txt" file="Logs/Example_20191017111942371/OPRG010_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG100_01</id>
+        <execution_id />
+        <description><![CDATA[Register a new user and save password]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:22:40</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:22:40</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:22:40</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:22:41</finish>
+            <time>0,8239753</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectRegister</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Register from the main menu]]></description>
+            <start>2019/10/17 11:22:41</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:41</start>
+              <finish>2019/10/17 11:22:41</finish>
+              <time>0,0599914</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuRegister]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:41</start>
+              <finish>2019/10/17 11:22:42</finish>
+              <time>0,7395763</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:42</finish>
+            <time>1,0674632</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>usingNewUser100</id>
+            <table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Register a user for login testing]]></description>
+            <start>2019/10/17 11:22:42</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:43</start>
+              <finish>2019/10/17 11:22:43</finish>
+              <time>0,4065587</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:22:43</start>
+              <finish>2019/10/17 11:22:43</finish>
+              <time>0,1999054</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[Fred White]]></data>
+              <start>2019/10/17 11:22:43</start>
+              <finish>2019/10/17 11:22:44</finish>
+              <time>0,4095444</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Male]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:44</start>
+              <finish>2019/10/17 11:22:44</finish>
+              <time>0,1993117</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[30/03/1978]]></data>
+              <start>2019/10/17 11:22:44</start>
+              <finish>2019/10/17 11:22:44</finish>
+              <time>0,3522943</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[f.white@testing.com]]></data>
+              <start>2019/10/17 11:22:45</start>
+              <finish>2019/10/17 11:22:45</finish>
+              <time>0,5992476</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Register]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:45</start>
+              <finish>2019/10/17 11:22:46</finish>
+              <time>1,1700613</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:46</finish>
+            <time>4,0953356</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>7</testcount>
+            <passcount>7</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>saveUser100Password</id>
+            <table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Save new users password]]></description>
+            <start>2019/10/17 11:22:46</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]RegisterSuccess]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:47</start>
+              <finish>2019/10/17 11:22:47</finish>
+              <time>0,3000197</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:47</start>
+              <finish>2019/10/17 11:22:48</finish>
+              <time>0,3170255</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[save]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:48</start>
+              <finish>2019/10/17 11:22:48</finish>
+              <time>0,1121894</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:22:48</finish>
+            <time>1,2945981</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>3</testcount>
+            <passcount>3</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:22:49</finish>
+          <time>8,8326111</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:22:49</finish>
+        <time>8,8326111</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>10</index>
+        <outputfiles>
+          <outputfile name="OPRG100_01_out.txt" file="Logs/Example_20191017111942371/OPRG100_01_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPRG100_02</id>
+        <execution_id />
+        <description><![CDATA[Login as a newly registered user]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:22:58</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:22:58</start>
+          <dependency>
+            <index>1</index>
+            <id>OPRG100_01</id>
+            <result>Pass</result>
+          </dependency>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:22:58</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:22:59</finish>
+            <time>0,8729004</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:22:59</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:22:59</start>
+              <finish>2019/10/17 11:23:00</finish>
+              <time>0,3509462</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:00</start>
+              <finish>2019/10/17 11:23:01</finish>
+              <time>1,2364216</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:01</finish>
+            <time>2,2600095</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withUser100</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Enter valid login credentials for a new user]]></description>
+            <start>2019/10/17 11:23:01</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:02</start>
+              <finish>2019/10/17 11:23:02</finish>
+              <time>0,2696125</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[f.white@testing.com]]></data>
+              <start>2019/10/17 11:23:02</start>
+              <finish>2019/10/17 11:23:03</finish>
+              <time>0,7615821</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[load]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:03</start>
+              <info><![CDATA[th46zx]]></info>
+              <finish>2019/10/17 11:23:03</finish>
+              <time>0,0983539</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:03</start>
+              <finish>2019/10/17 11:23:03</finish>
+              <time>0,330056</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:03</start>
+              <finish>2019/10/17 11:23:04</finish>
+              <time>0,7905112</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:04</finish>
+            <time>2,8494476</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>5</testcount>
+            <passcount>5</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>pageDisplayed</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that the Home page is displayed]]></description>
+            <start>2019/10/17 11:23:04</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:04</start>
+              <finish>2019/10/17 11:23:04</finish>
+              <time>0,2004808</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:05</finish>
+            <time>0,4005168</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:23:06</finish>
+          <time>7,902035</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>3</testcount>
+          <passcount>3</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:23:06</finish>
+        <time>7,902035</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>11</index>
+        <outputfiles>
+          <outputfile name="OPRG100_02_out.txt" file="Logs/Example_20191017111942371/OPRG100_02_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPLO001</id>
+        <execution_id />
+        <description><![CDATA[Verify that logout screen is displayed when logging off (expected Abort)]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:23:14</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:23:14</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:23:14</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:23:15</finish>
+            <time>0,8920854</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:23:15</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:15</start>
+              <finish>2019/10/17 11:23:15</finish>
+              <time>0,0700551</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:15</start>
+              <finish>2019/10/17 11:23:16</finish>
+              <time>1,1248039</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:16</finish>
+            <time>1,3780434</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withUser1</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Enter valid login credentials for an existing user]]></description>
+            <start>2019/10/17 11:23:16</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:17</start>
+              <finish>2019/10/17 11:23:17</finish>
+              <time>0,3420009</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:23:17</start>
+              <finish>2019/10/17 11:23:18</finish>
+              <time>0,550668</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[abc123]]></data>
+              <start>2019/10/17 11:23:18</start>
+              <finish>2019/10/17 11:23:18</finish>
+              <time>0,3142458</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:18</start>
+              <finish>2019/10/17 11:23:19</finish>
+              <time>0,9496894</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:19</finish>
+            <time>2,78286</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>4</testcount>
+            <passcount>4</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>selectLogout</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Logout from the main menu]]></description>
+            <start>2019/10/17 11:23:19</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:19</start>
+              <finish>2019/10/17 11:23:19</finish>
+              <time>0,0602591</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogout]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:19</start>
+              <finish>2019/10/17 11:23:20</finish>
+              <time>0,5647336</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:20</finish>
+            <time>0,7963479</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>4</index>
+            <id>pageDisplayed</id>
+            <table name="Logout" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that Logout page appears]]></description>
+            <start>2019/10/17 11:23:20</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Logout]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:20</start>
+              <info><![CDATA[Window not found after 6s. Expected: Odin Portal - Logout, Actual: Odin Portal]]></info>
+              <finish>2019/10/17 11:23:27</finish>
+              <time>6,4583252</time>
+              <result>1</result>
+              <success>False</success>
+              <error_no>1</error_no>
+              <error_msg><![CDATA[]]></error_msg>
+            </step>
+            <finish>2019/10/17 11:23:27</finish>
+            <time>6,5701406</time>
+            <result>Aborted</result>
+            <success>False</success>
+            <testcount>1</testcount>
+            <passcount>0</passcount>
+            <failcount>1</failcount>
+          </subtest>
+          <finish>2019/10/17 11:23:27</finish>
+          <time>13,0686823</time>
+          <result>Aborted</result>
+          <success>False</success>
+          <testcount>4</testcount>
+          <passcount>3</passcount>
+          <failcount>1</failcount>
+          <image subtest_index="4" step_index="1">images/OPLO001_Abort_20191017112326806.jpg</image>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:23:27</finish>
+        <time>13,0686823</time>
+        <result>Aborted</result>
+        <success>False</success>
+        <testcount>1</testcount>
+        <passcount>0</passcount>
+        <failcount>1</failcount>
+        <notruncount>0</notruncount>
+        <image subtest_index="4" step_index="1" iteration_index="0">images/OPLO001_Abort_20191017112326806.jpg</image>
+        <index>12</index>
+        <outputfiles>
+          <outputfile name="OPLO001_out.txt" file="Logs/Example_20191017111942371/OPLO001_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPAD001</id>
+        <execution_id />
+        <description><![CDATA[Check that a logged in user can access the Account Details screen]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:23:37</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:23:37</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:23:38</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:23:39</finish>
+            <time>1,1346348</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:23:39</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:39</start>
+              <finish>2019/10/17 11:23:39</finish>
+              <time>0,2643419</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:39</start>
+              <finish>2019/10/17 11:23:41</finish>
+              <time>1,9500767</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:42</finish>
+            <time>2,7145467</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withUser1</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Enter valid login credentials for an existing user]]></description>
+            <start>2019/10/17 11:23:42</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:42</start>
+              <finish>2019/10/17 11:23:42</finish>
+              <time>0,0838652</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:23:42</start>
+              <finish>2019/10/17 11:23:43</finish>
+              <time>0,6900287</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[abc123]]></data>
+              <start>2019/10/17 11:23:43</start>
+              <finish>2019/10/17 11:23:43</finish>
+              <time>0,318072</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:43</start>
+              <finish>2019/10/17 11:23:44</finish>
+              <time>0,9419463</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:44</finish>
+            <time>2,5055336</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>4</testcount>
+            <passcount>4</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>selectAccountDetails</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Account Details from the main menu]]></description>
+            <start>2019/10/17 11:23:44</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:44</start>
+              <finish>2019/10/17 11:23:45</finish>
+              <time>0,1758682</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuAccountDetails]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:45</start>
+              <finish>2019/10/17 11:23:45</finish>
+              <time>0,4799635</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:45</finish>
+            <time>0,9403512</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>4</index>
+            <id>pageDisplayed</id>
+            <table name="AccountDetails" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Check that the Account Details page is displayed]]></description>
+            <start>2019/10/17 11:23:45</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]AccountDetails]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:45</start>
+              <finish>2019/10/17 11:23:45</finish>
+              <time>0,0943033</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:23:45</finish>
+            <time>0,179487</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>1</testcount>
+            <passcount>1</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <finish>2019/10/17 11:23:47</finish>
+          <time>9,987294</time>
+          <result>Pass</result>
+          <success>True</success>
+          <testcount>4</testcount>
+          <passcount>4</passcount>
+          <failcount>0</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:23:47</finish>
+        <time>9,987294</time>
+        <result>Pass</result>
+        <success>True</success>
+        <testcount>1</testcount>
+        <passcount>1</passcount>
+        <failcount>0</failcount>
+        <notruncount>0</notruncount>
+        <index>13</index>
+        <outputfiles>
+          <outputfile name="OPAD001_out.txt" file="Logs/Example_20191017111942371/OPAD001_out.txt" />
+        </outputfiles>
+      </test>
+      <test>
+        <id>OPAD002</id>
+        <execution_id />
+        <description><![CDATA[Check user account details are correct (expected Fail)]]></description>
+        <table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+        <datadriven>False</datadriven>
+        <userfields />
+        <start>2019/10/17 11:23:57</start>
+        <iteration row="0" name="Iteration 1">
+          <start>2019/10/17 11:23:57</start>
+          <basestate>
+            <index>1</index>
+            <action>Restart.Home</action>
+            <start>2019/10/17 11:23:58</start>
+            <success>True</success>
+            <result>0</result>
+            <finish>2019/10/17 11:23:59</finish>
+            <time>1,12109</time>
+          </basestate>
+          <subtest>
+            <index>1</index>
+            <id>selectLogin</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Login from the main menu]]></description>
+            <start>2019/10/17 11:23:59</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:23:59</start>
+              <finish>2019/10/17 11:23:59</finish>
+              <time>0,3500601</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuLogin]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:00</start>
+              <finish>2019/10/17 11:24:01</finish>
+              <time>1,4206963</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:24:01</finish>
+            <time>2,159997</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>2</index>
+            <id>withUser1</id>
+            <table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Enter valid login credentials for an existing user]]></description>
+            <start>2019/10/17 11:24:01</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:01</start>
+              <finish>2019/10/17 11:24:02</finish>
+              <time>0,3699058</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[UserID]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:24:02</start>
+              <finish>2019/10/17 11:24:02</finish>
+              <time>0,710634</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Password]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[abc123]]></data>
+              <start>2019/10/17 11:24:03</start>
+              <finish>2019/10/17 11:24:03</finish>
+              <time>0,5401432</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Login]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:03</start>
+              <finish>2019/10/17 11:24:04</finish>
+              <time>1,1091425</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:24:04</finish>
+            <time>3,2493443</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>4</testcount>
+            <passcount>4</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>3</index>
+            <id>selectAccountDetails</id>
+            <table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Select Account Details from the main menu]]></description>
+            <start>2019/10/17 11:24:04</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]Home]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:04</start>
+              <finish>2019/10/17 11:24:05</finish>
+              <time>0,0904543</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[MenuAccountDetails]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:05</start>
+              <finish>2019/10/17 11:24:05</finish>
+              <time>0,6405695</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:24:05</finish>
+            <time>0,850508</time>
+            <result>Pass</result>
+            <success>True</success>
+            <testcount>2</testcount>
+            <passcount>2</passcount>
+            <failcount>0</failcount>
+          </subtest>
+          <subtest>
+            <index>4</index>
+            <id>checkUser1</id>
+            <table name="AccountDetails" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx" />
+            <description><![CDATA[Validate account details for user1 (expected Fail on DOB)]]></description>
+            <start>2019/10/17 11:24:05</start>
+            <step>
+              <index>1</index>
+              <object><![CDATA[[]AccountDetails]]></object>
+              <action><![CDATA[set]]></action>
+              <data><![CDATA[]]></data>
+              <start>2019/10/17 11:24:05</start>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,090507</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>2</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,1502318</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>3</index>
+              <object><![CDATA[Title]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[Mr]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <expected><![CDATA[Mr]]></expected>
+              <actual><![CDATA[Mr]]></actual>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,0800273</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>4</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[John Smith]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,1305881</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>5</index>
+              <object><![CDATA[Name]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[John Smith]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <expected><![CDATA[John Smith]]></expected>
+              <actual><![CDATA[John Smith]]></actual>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,0605266</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>6</index>
+              <object><![CDATA[Gender]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[Male]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,1999757</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>7</index>
+              <object><![CDATA[Gender]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[Male]]></data>
+              <start>2019/10/17 11:24:06</start>
+              <expected><![CDATA[Male]]></expected>
+              <actual><![CDATA[Male]]></actual>
+              <finish>2019/10/17 11:24:06</finish>
+              <time>0,0900814</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>8</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[04/01/1980]]></data>
+              <start>2019/10/17 11:24:07</start>
+              <finish>2019/10/17 11:24:07</finish>
+              <time>0,0999704</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>9</index>
+              <object><![CDATA[DOB]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[04/01/1980]]></data>
+              <start>2019/10/17 11:24:07</start>
+              <expected><![CDATA[04/01/1980]]></expected>
+              <actual><![CDATA[01/04/1980]]></actual>
+              <finish>2019/10/17 11:24:07</finish>
+              <time>0,0905666</time>
+              <result>1</result>
+              <success>False</success>
+              <error_no>1</error_no>
+              <error_msg><![CDATA[]]></error_msg>
+            </step>
+            <step>
+              <index>10</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[get]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:24:07</start>
+              <finish>2019/10/17 11:24:07</finish>
+              <time>0,1905532</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <step>
+              <index>11</index>
+              <object><![CDATA[Email]]></object>
+              <action><![CDATA[val]]></action>
+              <data><![CDATA[j.smith@testing.com]]></data>
+              <start>2019/10/17 11:24:07</start>
+              <expected><![CDATA[j.smith@testing.com]]></expected>
+              <actual><![CDATA[j.smith@testing.com]]></actual>
+              <finish>2019/10/17 11:24:07</finish>
+              <time>0,2199983</time>
+              <result>0</result>
+              <success>True</success>
+            </step>
+            <finish>2019/10/17 11:24:08</finish>
+            <time>2,1505033</time>
+            <result>Fail</result>
+            <success>False</success>
+            <testcount>11</testcount>
+            <passcount>10</passcount>
+            <failcount>1</failcount>
+          </subtest>
+          <finish>2019/10/17 11:24:08</finish>
+          <time>10,9560669</time>
+          <result>Fail</result>
+          <success>False</success>
+          <testcount>4</testcount>
+          <passcount>3</passcount>
+          <failcount>1</failcount>
+          <index>0</index>
+        </iteration>
+        <finish>2019/10/17 11:24:08</finish>
+        <time>10,9560669</time>
+        <result>Fail</result>
+        <success>False</success>
+        <testcount>1</testcount>
+        <passcount>0</passcount>
+        <failcount>1</failcount>
+        <notruncount>0</notruncount>
+        <index>14</index>
+        <outputfiles>
+          <outputfile name="OPAD002_out.txt" file="Logs/Example_20191017111942371/OPAD002_out.txt" />
+        </outputfiles>
+      </test>
+      <outputfiles>
+        <outputfile name="RunLog.txt" file="Logs/Example_20191017111942371/RunLog.txt" />
+      </outputfiles>
+    </run>
+  </build>
+</testsuite>

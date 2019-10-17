@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<test>
+<userfields>
+</userfields>
+<projectname>Example</projectname><configuration>Selenium</configuration><buildtimestamp>2019/10/17 11:19:26</buildtimestamp><id>OPRG100_02</id><table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><resultfile>C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/results/debug/results.xml</resultfile><description>Login as a newly registered user</description> <datasource></datasource>
+				<dependency>OPRG100_01</dependency>;
+<basestate><action>Restart.Home</action><description>
+Close all open web browsers, navigate to the Home page.
+</description></basestate>
+<subtest><id>selectLogin</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Select Login from the main menu</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>MenuLogin</object><action>set</action><data></data><description>
+Click on the &quot;MenuLogin&quot; link.
+</description></step>
+</subtest>
+<subtest><id>withUser100</id><table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Enter valid login credentials for a new user</description> 
+<step type="Set"><object>[]Login</object><action>set</action><data></data><description>
+Ensure the &quot;Login&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>UserID</object><action>set</action><data>f.white@testing.com</data><description>
+Enter the value &quot;f.white@testing.com&quot; into the &quot;UserID&quot; field.
+</description></step>
+<step type="Load"><object>Password</object><action>load</action><data></data><description>
+Using the value noted earlier with reference &quot;Password&quot;
+</description></step>
+<step type="Set"><object>Password</object><action>set</action><data></data><description>
+Enter the value into the &quot;Password&quot; field.
+</description></step>
+<step type="Set"><object>Login</object><action>set</action><data></data><description>
+Press the &quot;Login&quot; button.
+</description></step>
+</subtest>
+<subtest><id>pageDisplayed</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Check that the Home page is displayed</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+</subtest>
+</test>

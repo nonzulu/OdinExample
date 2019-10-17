@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Axe Object Usage Statistics</title>  
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript" src="jquery.tablesorter.js"></script> 
+<script type="text/javascript" src="jsapi.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#loadError').hide();
+	$('#spinner').show();
+	$("#systemMapsFilter").change(function()
+	{
+		var selected = $("#systemMapsFilter option:selected").val();
+		
+		if (selected == 'ShowAll')
+		{
+			ns_objectusage.showAll = 'True';
+		}
+		else
+		{
+			ns_objectusage.showAll = 'False';
+		}
+		loadPage(ns_objectusage.xmlFile, ns_objectusage.showAll);
+		$("#usageTable").tablesorter();
+	});
+	
+ $.ajax({
+  type: "GET",
+  url: "ObjectUsage.xml",
+  dataType: ($.browser.msie) ? "text" : "xml",
+  success: parseXml,
+	error:function (msg){
+		$('#spinner').hide();
+		$('#headerDiv').hide();
+		$('.subpanel').hide();
+		$('#loadError').show();
+	}
+ });
+});
+
+ns_objectusage = {};
+
+ns_objectusage.xmlFile = "";
+ns_objectusage.showAll = "False";
+
+function loadPage(data, showAll)
+{
+	$('#spinner').hide();
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	ns_objectusage.xmlFile = xml;
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	$('#headerDiv').html('');
+	var heading = '<div class="mainheading">' + 'Statistics - Object Usage - ' + project + ' - ' + testsuite + '</div><p/>';
+	$('#headerDiv').append(heading);
+	
+	/*
+	$('#subpanelLinks').html('');
+	$('#subpanelLinks').append('<th class="vrowlabel">Links</th>');
+	$('#subpanelLinks').append('<td class="value" id="subpanelRunSummaryLink"><a href="index.html">Run Summary</a></td>');
+	$('#subpanelLinks').append('<td class="value" id="subpanelDocLink"><a href="documentation.html">Documentation</a></td>');
+	$('#subpanelLinks').append('<td class="value" id="subpanelReportLink"><a href="testreport.html">Report</a></td>');
+	$('#subpanelLinks').append('<td class="value"><a href="actionusage.html">Action Usage</a></td>');
+	$('#subpanelLinks').append('<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>');
+	$('#subpanelLinks').append('<td class="value"><a href="timers.html">Transaction Timers</a>');
+	*/
+	$('#subpanelSummary').html('');
+	$('#subpanelSummary').append('<th class="vrowlabel">Configuration</th>');
+	$('#subpanelSummary').append('<td class="value" id="subpanelConfig">' + config + '</td>');
+	
+	//$('#subpanelSummary').append('<td id="subpanelSummaryTab"><td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td></td>');
+	//$("#subpanelSummary").append('<td id="optionButton"></td>');
+		
+	var total = 0;
+	var unused = 0;
+	var windows = 0;
+	var obj_window = 0;
+	$("#usageTable").find("tbody").html("");
+	
+    $(xml).find('object').each(function(){
+		if (showAll == "True" || $(this).attr('system') == "False")
+		{
+			total = total + 1;
+			var obj = $(this).attr('name');
+			var cls = $(this).attr('class');
+			var count = $(this).attr('count');
+			var mapfile = $(this).attr('mapfile');
+			//var system = $(this).attr('system');
+			if (count == "0") unused = unused + 1;
+			if (obj.indexOf(".") == -1) windows = windows + 1;
+			
+			$("#usageTable").find("tbody")
+				.append('<tr class="resultrow"><td class="value">'+obj+'</td><td class="value">'+count+'</td><td class="value">'+mapfile+'</td>'
+				+'<td class="value">'+cls+'</td></tr>');
+		}
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	obj_window = (total - windows) / windows;
+	obj_window = obj_window.toFixed(4);
+	
+	$("#prj").html("");
+	$("#config").html("");
+	$("#suite").html("");
+   	$("#prj").append(project);
+	$("#config").append(config);
+	$("#suite").append(testsuite);
+	
+	$("#total").html("");
+	$("#unused").html("");
+	$("#usage").html("");
+ 	$("#windows").html("");
+	$("#obj_window").html("");
+	
+  	$("#total").append(total);
+  	$("#unused").append(unused);
+  	$("#usage").append(percentage);
+	$("#windows").append(windows);
+	$("#obj_window").append(obj_window);
+	
+	$("#usageTable").trigger("update"); 
+	$("#usageTable").tablesorter();
+}
+
+$('#showAllButton').live('click',function() {
+    loadPage(ns_objectusage.xmlFile, ns_objectusage.showAll);
+	$("#usageTable").tablesorter();
+});
+
+function parseXml(xml)
+{
+	loadPage(xml, "False");
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+<style>
+.spinner {
+	position: fixed;
+	top: 30%;
+	left: 38%;
+	margin-left: 0px; /* half width of the spinner gif */
+	margin-top: 0px; /* half height of the spinner gif */
+	text-align:center;
+	z-index:1234;
+	overflow: auto;
+	width: 400px; /* width of the spinner gif */
+	height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+</style>
+</head>
+<body class="main">
+<div id="headerDiv"></div>
+
+	<div id='cssmenu' class="notprinted">
+		<ul>
+		   <li class='active'><a href='documentation.html'><span>Documentation</span></a></li>
+		   <li class='has-sub'><a href='statistics.html'><span>Statistics</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='objectusage.html'><span>Object Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='actionusage.html'><span>Action Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='subtestusage.html'><span>Subtest Usage</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='has-sub'><a href='index.html'><span>Results</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='timers.html'><span>Timers</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='last'><a href='testreport.html'><span>Report</span></a></li>
+		</ul>
+	</div>
+	
+	<!--
+	<p/>
+	<div align="left">
+		<select id="systemMapsFilter">
+			<option value="ShowAll">Show all objects</option>
+			<option value="SuppressSystemMaps">Do not include system maps</option>
+		</select>
+	</div>
+	-->
+	<!--
+	<div class="subpanel">
+		<table class="summary">
+			<tr id="subpanelLinks">
+				<th class="vrowlabel">Links</th>
+				<td class="value" id="subpanelDocLink"></td>
+				<td class="value"><a href="objectusage.html">Object Usage</a></td>
+				<td class="value"><a href="actionusage.html">Action Usage</a></td>
+				<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>
+				<td class="value"><a href="timers.html">Transaction Timers</a>
+			</tr>
+		</table>
+	</div>
+	-->
+	<p/>
+	
+	<!--
+<div class="subpanel">
+	<table class="summary">
+    <tr>		
+		<td class="value"><a href="index.html">Run Summary</a></td>
+		<td>&#160;&#160;</td>
+		<td class="value"><a href="actionusage.html">Action Usage</a></td>
+		<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>
+		<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+		<td id="optionButton">	
+		</td>		
+    </tr>
+	</table>	
+</div>
+		-->
+	<div class="subpanel">
+		<table class="summary">
+			<tr id="subpanelSummary">
+				<th class="vrowlabel">Configuration</th>
+				<td class="value" id="subpanelConfig"></td>
+				<td>&#160;&#160;&#160;</td>
+				<td id="subpanelSummaryTab"/>
+				<td id="subpanelSummaryButton"/>
+			</tr>
+		</table>
+	</div>
+	<p/>
+
+	<!--
+<div class="subpanel">
+  <table class="summary" id="table2">
+    <tr>
+      <th class="vrowlabel">Project</th>
+      <td class="value" id="prj"></td>
+    </tr>
+    <tr>
+      <th class="vrowlabel">Configuration</th>
+      <td class="value" id="config"></td>
+    </tr>
+    <tr>
+      <th class="vrowlabel">Test Suite</th>
+      <td class="value" id="suite"></td>
+    </tr>
+  </table>						
+</div>
+    -->
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Objects</th>
+
+<td class="value" id="total">
+</td>
+      <th class="vrowlabel">Untested Objects</th>
+
+<td class="value"  id="unused">
+</td>
+   
+      <th class="vrowlabel">Coverage</th>
+
+<td class="value"  id="usage">
+</td>
+
+      <th class="vrowlabel">Windows</th>
+
+<td class="value" id="windows">
+</td>
+   
+      <th class="vrowlabel">Objects/Window</th>
+
+<td class="value" id="obj_window">
+</td>
+
+    </tr>
+
+  </table>
+</div>
+<p/>
+	<div id="loadError" class="spinner" style={display:none}>
+		<p>Axe failed to load object usage. Please ensure the file "objectusage.xml" exists.</p>
+	</div>	
+<div class="subpanel">
+	<table class="results" id="usageTable">
+		<thead> 
+			<tr class="heading">
+				<th class="headerSort">Object</th>
+				<th class="headerSort">Count</th>
+				<th class="headerSort">Map</th>
+				<th class="headerSort">Class</th>
+			 </tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+<div id="spinner" class="spinner" style={display:none}>
+		<p>Please wait, Axe is loading results</p>
+		<img id="img-spinner" src="loader.gif" alt="Loading"/>
+	</div>	
+<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+</body>
+</html>

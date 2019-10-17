@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<test>
+<userfields>
+</userfields>
+<projectname>Example</projectname><configuration>Selenium</configuration><buildtimestamp>2019/10/17 11:19:26</buildtimestamp><id>OPLI001</id><table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><resultfile>C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/results/debug/results.xml</resultfile><description>Verify that an existing user can login ok</description> <datasource></datasource>
+<basestate><action>Restart.Home</action><description>
+Close all open web browsers, navigate to the Home page.
+</description></basestate>
+<subtest><id>selectLogin</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Select Login from the main menu</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>MenuLogin</object><action>set</action><data></data><description>
+Click on the &quot;MenuLogin&quot; link.
+</description></step>
+</subtest>
+<subtest><id>withUser1</id><table name="Login" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Enter valid login credentials for an existing user</description> 
+<step type="Set"><object>[]Login</object><action>set</action><data></data><description>
+Ensure the &quot;Login&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>UserID</object><action>set</action><data>j.smith@testing.com</data><description>
+Enter the value &quot;j.smith@testing.com&quot; into the &quot;UserID&quot; field.
+</description></step>
+<step type="Set"><object>Password</object><action>set</action><data>abc123</data><description>
+Enter the value &quot;abc123&quot; into the &quot;Password&quot; field.
+</description></step>
+<step type="Set"><object>Login</object><action>set</action><data></data><description>
+Press the &quot;Login&quot; button.
+</description></step>
+</subtest>
+<subtest><id>pageDisplayed</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Check that the Home page is displayed</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+</subtest>
+</test>

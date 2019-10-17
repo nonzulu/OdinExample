@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Axe Subtest Usage Statistics</title>
+
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript" src="jquery.tablesorter.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#loadError').hide();
+	$('#spinner').show();
+ $.ajax({
+  type: "GET",
+  url: "SubtestUsage.xml",
+  dataType: ($.browser.msie) ? "text" : "xml",
+  success: parseXml,
+  error:function (msg){
+		$('#spinner').hide();
+		$('#headerDiv').hide();
+		$('.subpanel').hide();
+		$('#loadError').show();
+	}
+ });
+});
+
+function parseXml(data)
+{
+	$('#spinner').hide();
+	$('#loadError').hide();
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	$('#headerDiv').html('');
+	var heading = '<div class="mainheading">' + 'Statistics - Subtest Usage - ' + project + ' - ' + testsuite + '</div><p/>';
+	$('#headerDiv').append(heading);
+	
+	var total = 0;
+	var unused = 0;
+    $(xml).find('subtest').each(function(){
+		total = total + 1;
+		var name = $(this).find('name').text();
+		var count = $(this).find('count').text();
+		if (count == "0") unused = unused + 1;
+		
+		$("#usageTable").find("tbody")
+			.append('<tr class="resultrow"><td class="value">'+name+'</td><td class="value">'+count+'</td></tr>');
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	
+   	$("#prj").append(project);
+	$("#config").append(config);
+	$("#suite").append(testsuite);
+	
+  	$("#total").append(total);
+  	$("#unused").append(unused);
+  	$("#usage").append(percentage);
+
+	$("#usageTable").tablesorter();
+
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+<style>
+.spinner {
+	position: fixed;
+	top: 30%;
+	left: 38%;
+	margin-left: 0px; /* half width of the spinner gif */
+	margin-top: 0px; /* half height of the spinner gif */
+	text-align:center;
+	z-index:1234;
+	overflow: auto;
+	width: 400px; /* width of the spinner gif */
+	height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+</style>
+</head>
+<body class="main">
+<div>
+<div id="headerDiv"></div>
+<p/>
+	<div id='cssmenu' class="notprinted">
+		<ul>
+		   <li class='active'><a href='documentation.html'><span>Documentation</span></a></li>
+		   <li class='has-sub'><a href='statistics.html'><span>Statistics</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='objectusage.html'><span>Object Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='actionusage.html'><span>Action Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='subtestusage.html'><span>Subtest Usage</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='has-sub'><a href='index.html'><span>Results</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='timers.html'><span>Timers</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='last'><a href='testreport.html'><span>Report</span></a></li>
+		</ul>
+	</div>
+	<p/>
+	<!--
+<div class="subpanel">
+	<table class="summary" id="table1">
+    <tr>		
+		<td class="value"><a href="index.html">Run Summary</a></td>
+		<td>&#160;&#160;</td>
+		<td class="value"><a href="objectusage.html">Object Usage</a></td>
+		<td class="value"><a href="actionusage.html">Action Usage</a></td>			
+    </tr>
+	</table>	
+</div>
+-->
+<div class="subpanel">
+  <table class="summary" id="table2">
+  <!--
+    <tr>
+      <th class="vrowlabel">Project</th>
+      <td class="value" id="prj"></td>
+    </tr>
+	-->
+    <tr>
+      <th class="vrowlabel">Configuration</th>
+      <td class="value" id="config"></td>
+    </tr>
+	<!--
+    <tr>
+      <th class="vrowlabel">Test Suite</th>
+      <td class="value" id="suite"></td>
+    </tr>
+	-->
+  </table>						
+</div>
+    <p/>
+		<div id="loadError" class="spinner" style={display:none}>
+		<p>Axe failed to load subtest usage. Please ensure the file "subtestusage.xml" exists.</p>
+	</div>	
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Subtests</th>
+		<td class="value" id="total">
+		</td>
+      <th class="vrowlabel">Unused Subtests</th>
+		<td class="value" id="unused">
+		</td>
+      <th class="vrowlabel">Usage</th>
+		<td class="value" id="usage">
+		</td>
+    </tr>
+  </table>
+</div>
+<div class="subpanel">
+<table class="results" id="usageTable">
+	<thead> 
+		<tr class="heading"> 
+			<th class="headerSort">Name</th> 
+			<th class="headerSort">Count</th> 
+		</tr> 
+	</thead> 
+	<tbody>
+	</tbody>
+</table>
+</div>
+<div id="spinner" class="spinner" style={display:none}>
+		<p>Please wait, Axe is loading results</p>
+		<img id="img-spinner" src="loader.gif" alt="Loading"/>
+	</div>	
+<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+</body>
+</html>

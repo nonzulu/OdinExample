@@ -1,0 +1,7 @@
+Command:
+%COMSPEC% /c OPAD001.exe  >> "C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\Logs\Example_20191017111942371\OPAD001_out.txt" 2>&1
+Output:
+Test.InitSuite(C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\Example.tpj,debug)
+Starting ChromeDriver 2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e) on port 51020
+Only local connections are allowed.
+[1571304215.417][WARNING]: Timed out connecting to Chrome, retrying...

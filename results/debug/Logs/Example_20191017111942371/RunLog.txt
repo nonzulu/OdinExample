@@ -1,0 +1,34 @@
+5248-20191017-11:19:44.912-BeginActivity 'Setup' started with tags '' and guid 'dce7c74c-11db-44b6-a1f2-a39f51022010'
+5248-20191017-11:19:45.073-BeginActivity 'RunTests' started with tags '' and guid '294efbbb-1481-415b-b861-2e0940af9401'
+5248-20191017-11:19:45.152-BeginActivity 'RunTest' started with tags 'AxeId=OPLI001' and guid '842920b4-d9b2-40bb-815d-a914bcf11e0f'
+5248-20191017-11:19:45.198-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPLI001.exe 
+5248-20191017-11:20:03.910-BeginActivity 'RunTest' started with tags 'AxeId=OPLI010' and guid '52344b03-b5c5-42d8-8963-f7281a1bfe42'
+5248-20191017-11:20:03.960-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPLI010.exe 
+5248-20191017-11:20:21.883-BeginActivity 'RunTest' started with tags 'AxeId=OPLI020' and guid '3ea97df1-1b80-4e97-8057-14eb4a45e8de'
+5248-20191017-11:20:21.919-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPLI020.exe 
+1628-20191017-11:20:39.759-Test result file for test OPLI020 is invalid XML. File=C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\testResults.xml
+The 'basestate' start tag on line 4 position 2 does not match the end tag of 'test'. Line 76, position 3.
+File saved to C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\TestResult_OPLI020_ERROR.xml
+5248-20191017-11:20:40.008-BeginActivity 'RunTest' started with tags 'AxeId=OPRG001' and guid 'bf8aca86-fd46-45cb-9150-9f27f4aa72f6'
+5248-20191017-11:20:40.053-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG001.exe 
+5248-20191017-11:20:57.188-BeginActivity 'RunTest' started with tags 'AxeId=OPRG002' and guid 'ad2d289a-0312-4e28-a617-3793f481fd0e'
+5248-20191017-11:20:57.207-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG002.exe 
+5248-20191017-11:21:17.813-BeginActivity 'RunTest' started with tags 'AxeId=OPRG003' and guid '19cf19d5-73d6-413e-9134-c22dea54d54d'
+5248-20191017-11:21:17.868-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG003.exe 
+5248-20191017-11:21:40.104-BeginActivity 'RunTest' started with tags 'AxeId=OPRG004' and guid '245030ab-59e2-42ae-9715-3098eb72ed64'
+5248-20191017-11:21:40.138-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG004.exe 
+5248-20191017-11:21:56.537-BeginActivity 'RunTest' started with tags 'AxeId=OPRG005' and guid '49cbf105-6657-47f1-8ea5-a73b26f4e592'
+5248-20191017-11:21:56.577-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG005.exe 
+5248-20191017-11:22:14.497-BeginActivity 'RunTest' started with tags 'AxeId=OPRG010' and guid '90f84fea-cb2f-4dd3-b76e-e189e6984864'
+5248-20191017-11:22:14.537-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG010.exe 
+5248-20191017-11:22:31.319-BeginActivity 'RunTest' started with tags 'AxeId=OPRG100_01' and guid '7704c365-bdfa-4651-9c65-51ab037dc03a'
+5248-20191017-11:22:31.368-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG100_01.exe 
+5248-20191017-11:22:49.605-BeginActivity 'RunTest' started with tags 'AxeId=OPRG100_02' and guid 'dde9a704-df7f-4148-9fe0-75ccee007f23'
+5248-20191017-11:22:49.647-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPRG100_02.exe 
+5248-20191017-11:23:06.268-BeginActivity 'RunTest' started with tags 'AxeId=OPLO001' and guid '3363ca1d-644e-4097-afc1-dc3ac3169153'
+5248-20191017-11:23:06.308-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPLO001.exe 
+5248-20191017-11:23:29.418-BeginActivity 'RunTest' started with tags 'AxeId=OPAD001' and guid '88d086ad-31f6-4c7f-94ea-cfab26b20eec'
+5248-20191017-11:23:29.463-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPAD001.exe 
+5248-20191017-11:23:48.308-BeginActivity 'RunTest' started with tags 'AxeId=OPAD002' and guid '33e42122-265f-4989-8632-39d739d2cf4c'
+5248-20191017-11:23:48.389-RunTest Command: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug\OPAD002.exe 
+5248-20191017-11:24:09.108-BeginActivity 'TearDown' started with tags '' and guid '3df2e883-8286-42a2-8971-55154216077b'

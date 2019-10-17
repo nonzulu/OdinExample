@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Build>
+  <AxeVersion>4.5.0.21</AxeVersion>
+  <Project>C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\Example.tpj</Project>
+  <Time>2019/10/17 11:19:26</Time>
+  <MachineName>DESKTOP-H934H6U</MachineName>
+  <UserName>knzul</UserName>
+  <Settings>
+    <BuildConfiguration>Selenium</BuildConfiguration>
+    <TestSuite>debug</TestSuite>
+    <Workbook>C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx</Workbook>
+    <Worksheet>RunAll</Worksheet>
+    <Tests>0</Tests>
+    <ProvisionData>True</ProvisionData>
+  </Settings>
+  <Configuration>
+    <Tool>SeleniumCSharp</Tool>
+    <ToolArguments />
+    <ToolInstallDir>C:\Program Files (x86)\Odin Technology\Axe\Selenium</ToolInstallDir>
+    <ToolProjectDir />
+    <ToolVersion>3.4.0</ToolVersion>
+    <Encoding>Default</Encoding>
+    <DriverEncoding>Default</DriverEncoding>
+    <ActionMap Name="CSharp" Path="C:\Program Files (x86)\Odin Technology\Axe\ActionMap\CSharp.ActionMap.xlsx" />
+    <ActionMap Name="SeleniumCSharp" Path="C:\Program Files (x86)\Odin Technology\Axe\ActionMap\SeleniumCSharp.ActionMap.xlsx" />
+    <ActionMap Name="Example" Path="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\ActionMap\Example.ActionMap.xlsx" />
+    <ObjectMap Name="Example" Path="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\ObjectMap\Example.objectmap" />
+    <MapObjectReferences>False</MapObjectReferences>
+    <PostProvision />
+    <PostBuild>Compile</PostBuild>
+    <PostBuildArguments>
+        /nologo /nowarn:219 /platform:x86
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe/RestSharp.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe/Newtonsoft.Json.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe/Odin.Axe.Core.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.Platform.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.Main.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.Runtime.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.Harness.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.TEX.Selenium.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\DocumentFormat.OpenXml.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe/SpreadsheetGear2017.Core.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\ThoughtWorks.Selenium.Core.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\WebDriver.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\WebDriver.Support.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\Emgu.CV.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\Eyes.Sdk.DotNet.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\Eyes.Selenium.DotNet.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\Ionic.Zip.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Selenium\net40\log4net.dll"
+        /reference:"C:\Program Files (x86)\Odin Technology\Axe\Odin.Axe.Common.SauceLabs.dll"
+       </PostBuildArguments>
+    <ScriptDir>C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\scripts\debug</ScriptDir>
+  </Configuration>
+  <Tests>
+    <Test>
+      <Id>OPLI001</Id>
+    </Test>
+    <Test>
+      <Id>OPLI010</Id>
+    </Test>
+    <Test>
+      <Id>OPLI020</Id>
+    </Test>
+    <Test>
+      <Id>OPRG001</Id>
+    </Test>
+    <Test>
+      <Id>OPRG002</Id>
+    </Test>
+    <Test>
+      <Id>OPRG003</Id>
+    </Test>
+    <Test>
+      <Id>OPRG004</Id>
+    </Test>
+    <Test>
+      <Id>OPRG005</Id>
+    </Test>
+    <Test>
+      <Id>OPRG010</Id>
+    </Test>
+    <Test>
+      <Id>OPRG100_01</Id>
+    </Test>
+    <Test>
+      <Id>OPRG100_02</Id>
+    </Test>
+    <Test>
+      <Id>OPLO001</Id>
+    </Test>
+    <Test>
+      <Id>OPAD001</Id>
+    </Test>
+    <Test>
+      <Id>OPAD002</Id>
+    </Test>
+  </Tests>
+</Build>

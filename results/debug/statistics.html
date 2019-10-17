@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Axe Statistics</title>  
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript" src="jquery.tablesorter.js"></script> 
+<script type="text/javascript" src="jsapi.js"></script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	  
+$(document).ready(function(){
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: "ObjectUsage.xml",
+		dataType: ($.browser.msie) ? "text" : "xml",
+		success: parseObjectUsage,
+		error:function (msg){
+			$('#loadObjectUsageError').show();
+		}
+	});
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: "ActionUsage.xml",
+		dataType: ($.browser.msie) ? "text" : "xml",
+		success: parseActionUsage,
+		error:function (msg){
+			$('#loadActionUsageError').show();
+		}
+	});
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: "SubtestUsage.xml",
+		dataType: ($.browser.msie) ? "text" : "xml",
+		success: parseSubtestUsage,
+		error:function (msg){
+			$('#loadSubtestUsageError').show();
+		}
+	});
+});
+
+ns_objectusage = {};
+
+ns_objectusage.xmlFile = "";
+
+function loadObjectUsage(data, showAll)
+{
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	ns_objectusage.xmlFile = xml;
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	$('#headerDiv').html('');
+	var heading = '<div class="mainheading">' + 'Statistics Home - ' + project + ' - ' + testsuite + '</div><p/>';
+	$('#headerDiv').append(heading);
+	
+	$('#subpanelSummary').html('');
+	$('#subpanelSummary').append('<th class="vrowlabel">Configuration</th>');
+	$('#subpanelSummary').append('<td class="value" id="subpanelConfig">' + config + '</td>');
+	
+	var total = 0;
+	var unused = 0;
+	var windows = 0;
+	var obj_window = 0;
+	
+    $(xml).find('object').each(function(){
+		if (showAll == "True" || $(this).attr('system') == "False")
+		{
+			total = total + 1;
+			var obj = $(this).attr('name');
+			var cls = $(this).attr('class');
+			var count = $(this).attr('count');
+			var mapfile = $(this).attr('mapfile');
+			//var system = $(this).attr('system');
+			if (count == "0") unused = unused + 1;
+			if (obj.indexOf(".") == -1) windows = windows + 1;
+		}
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	obj_window = (total - windows) / windows;
+	obj_window = obj_window.toFixed(4);
+	
+	$("#prj").html("");
+	$("#config").html("");
+	$("#suite").html("");
+   	$("#prj").append(project);
+	$("#config").append(config);
+	$("#suite").append(testsuite);
+	
+	$("#totalObjects").html("");
+	$("#unusedObjects").html("");
+	$("#objectUsage").html("");
+ 	$("#windows").html("");
+	$("#obj_window").html("");
+	
+  	$("#totalObjects").append(total);
+  	$("#unusedObjects").append(unused);
+  	$("#objectUsage").append(percentage);
+	$("#windows").append(windows);
+	$("#obj_window").append(obj_window);
+	
+	try
+	{	
+		var data = google.visualization.arrayToDataTable([
+		  ['Category', 'Number of Objects'],
+		  ['Used Objects', total - unused],
+		  ['Unused Objects', unused]
+		]);
+
+		var options = {
+		  title: 'Object Coverage',
+		  colors:['#41A041','#E51400']
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('objectUsagePiechart'));
+		chart.draw(data, options);
+		$('#objectUsageException').hide('');
+		$('#objectUsagePiechart').show('');
+	}
+	catch (err)
+	{
+		$('#objectUsagePiechart').hide('');
+		$('#objectUsageException').show('');
+	}
+}
+
+function parseObjectUsage(xml)
+{
+	$('#loadObjectUsageError').hide();
+	loadObjectUsage(xml, "False");
+}
+
+function loadActionUsage(data, showAll)
+{
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	var total = 0;
+	var unused = 0;
+	
+    $(xml).find('action').each(function(){
+		if (showAll == "True" || $(this).attr('system') == "False")
+		{
+			total = total + 1;
+			var action = $(this).attr('action');
+			var cls = $(this).attr('class');
+			var count = $(this).attr('count');
+			var doc = $(this).attr('documentation');
+			var overr = $(this).attr('overriden');
+			var docover = $(this).attr('documentation_overriden');
+			var mapfile = $(this).attr('mapfile');
+			var system = $(this).attr('system');
+			if (count == "0") unused = unused + 1;
+		}
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	
+	$("#totalActions").html("");
+	$("#unusedAction").html("");
+	$("#actionUsage").html("");
+ 
+  	$("#totalActions").append(total);
+  	$("#unusedAction").append(unused);
+  	$("#actionUsage").append(percentage);
+	
+	try
+	{
+		var data = google.visualization.arrayToDataTable([
+		  ['Category', 'Number of Actions'],
+		  ['Used Actions', total - unused],
+		  ['Unused Actions', unused]
+		]);
+
+		var options = {
+		  title: 'Action Coverage',
+		  colors:['#41A041','#E51400']
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('actionUsagePiechart'));
+		chart.draw(data, options);
+		$('#actionUsageException').hide('');
+		$('#actionUsagePiechart').show('');
+	}
+	catch (err)
+	{
+		$('#actionUsagePiechart').hide('');
+		$('#actionUsageException').show('');
+	}
+	
+}
+
+function parseActionUsage(xml)
+{
+	$('#loadActionUsageError').hide();
+	loadActionUsage(xml, "False");
+}
+
+function loadSubtestUsage(data)
+{
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	var total = 0;
+	var unused = 0;
+    $(xml).find('subtest').each(function(){
+		total = total + 1;
+		var name = $(this).find('name').text();
+		var count = $(this).find('count').text();
+		if (count == "0") unused = unused + 1;
+		
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	
+  	$("#totalSubtests").append(total);
+  	$("#unusedSubtests").append(unused);
+  	$("#subtestsUsage").append(percentage);
+	
+	try
+	{
+		var data = google.visualization.arrayToDataTable([
+		  ['Category', 'Number of Subtests'],
+		  ['Used Subtests', total - unused],
+		  ['Unused Subtests', unused]
+		]);
+
+		var options = {
+		  title: 'Subtest Coverage',
+		  colors:['#41A041','#E51400']
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('subtestUsagePiechart'));
+		chart.draw(data, options);
+		$('#subtestUsagePiechart').show('');
+		$('#subtestUsageException').hide('');
+	}
+	catch (err)
+	{
+		$('#subtestUsagePiechart').hide('');
+		$('#subtestUsageException').show('');
+	}
+}
+
+function parseSubtestUsage(xml)
+{
+	$('#loadSubtestUsageError').hide();
+	loadSubtestUsage(xml);
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+</head>
+<body class="main">
+<div id="headerDiv"></div>
+
+	<div id='cssmenu' class="notprinted">
+		<ul>
+		   <li class='active'><a href='documentation.html'><span>Documentation</span></a></li>
+		   <li class='has-sub'><a href='statistics.html'><span>Statistics</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='objectusage.html'><span>Object Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='actionusage.html'><span>Action Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='subtestusage.html'><span>Subtest Usage</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='has-sub'><a href='index.html'><span>Results</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='timers.html'><span>Timers</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='last'><a href='testreport.html'><span>Report</span></a></li>
+		</ul>
+	</div>
+	
+	<p/>
+
+<div class="subpanel">
+  <table class="summary" id="table2">
+  <!--
+    <tr>
+      <th class="vrowlabel">Project</th>
+      <td class="value" id="prj"></td>
+    </tr>
+	-->
+    <tr>
+      <th class="vrowlabel">Configuration</th>
+      <td class="value" id="config"></td>
+    </tr>
+	<!--
+    <tr>
+      <th class="vrowlabel">Test Suite</th>
+      <td class="value" id="suite"></td>
+    </tr>
+	-->
+  </table>						
+</div>
+	<p/>
+<p/>
+<div id="objectUsageHeaderDiv" class="mainheading"><a href='objectusage.html'><span>Object Usage</span></a></div>
+<p/>
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Objects</th>
+
+<td class="value" id="totalObjects">
+</td>
+      <th class="vrowlabel">Untested Objects</th>
+
+<td class="value"  id="unusedObjects">
+</td>
+   
+      <th class="vrowlabel">Coverage</th>
+
+<td class="value"  id="objectUsage">
+</td>
+
+      <th class="vrowlabel">Windows</th>
+
+<td class="value" id="windows">
+</td>
+   
+      <th class="vrowlabel">Objects/Window</th>
+
+<td class="value" id="obj_window">
+</td>
+
+    </tr>
+
+  </table>
+</div>
+	<div id="loadObjectUsageError" class="spinner" style={display:none}>
+		<p>Axe failed to load object usage statistics. Please ensure the file "objectusage.xml" exists.</p>
+	</div>	
+<p id="objectUsageException" style="display:none">Sorry, the Pie Charts are not currently available. Since the charts require access to a hosted library the most likely cause is that you do not have an internet connection. 
+<br>Once you have connected to the internet the library should be cached for offline use.</p>	
+<div id="objectUsagePiechart" style="width: 600px; height: 200px;"></div>
+
+<p/>
+<div id="actionUsageHeaderDiv" class="mainheading"><a href='actionusage.html'><span>Action Usage</span></a></div>
+<p/>
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Actions</th>
+
+<td class="value" id="totalActions">
+   
+</td>
+   
+      <th class="vrowlabel">Unused Actions</th>
+
+<td class="value" id="unusedAction">
+   
+</td>
+   
+      <th class="vrowlabel">Usage</th>
+
+<td class="value" id="actionUsage">
+</td>
+    </tr>
+
+  </table>
+</div>
+	<div id="loadActionUsageError" class="spinner" style={display:none}>
+		<p>Axe failed to load action usage statistics. Please ensure the file "actionusage.xml" exists.</p>
+	</div>	
+<p id="actionUsageException" style="display:none">Sorry, the Pie Charts are not currently available. Since the charts require access to a hosted library the most likely cause is that you do not have an internet connection. 
+<br>Once you have connected to the internet the library should be cached for offline use.
+</p>	
+<div id="actionUsagePiechart" style="width: 600px; height: 200px;"></div>
+
+<p/>
+<div id="subtestUsageHeaderDiv" class="mainheading"><a href='subtestusage.html'><span>Subtest Usage</span></a></div>
+<p/>
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Subtests</th>
+		<td class="value" id="totalSubtests">
+		</td>
+      <th class="vrowlabel">Unused Subtests</th>
+		<td class="value" id="unusedSubtests">
+		</td>
+      <th class="vrowlabel">Usage</th>
+		<td class="value" id="subtestsUsage">
+		</td>
+    </tr>
+  </table>
+</div>
+	<div id="loadSubtestUsageError" class="spinner" style={display:none}>
+		<p>Axe failed to load subtest usage statistics. Please ensure the file "subtestusage.xml" exists.</p>
+	</div>	
+<p id="subtestUsageException" style="display:none">Sorry, the Pie Charts are not currently available. Since the charts require access to a hosted library the most likely cause is that you do not have an internet connection. 
+<br>Once you have connected to the internet the library should be cached for offline use.</p>
+<div id="subtestUsagePiechart" style="width: 600px; height: 200px;"></div>
+
+<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+</body>
+</html>

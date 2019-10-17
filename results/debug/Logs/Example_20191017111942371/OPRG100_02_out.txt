@@ -1,0 +1,7 @@
+Command:
+%COMSPEC% /c OPRG100_02.exe  >> "C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\results\debug\Logs\Example_20191017111942371\OPRG100_02_out.txt" 2>&1
+Output:
+Test.InitSuite(C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\Example.tpj,debug)
+Starting ChromeDriver 2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e) on port 50913
+Only local connections are allowed.
+[1571304175.696][WARNING]: Timed out connecting to Chrome, retrying...

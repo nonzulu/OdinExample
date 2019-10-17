@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<object_coverage>
+<project>Example</project>
+<config file="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\config\Selenium.BuildConfig.xml" name="Selenium"/>
+<testsuite>debug</testsuite>
+<object_count>47</object_count>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails" count="2" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.DOB" count="2" class="HtmlCell"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.Email" count="2" class="HtmlCell"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.Gender" count="2" class="HtmlCell"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.MenuLogout" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.Name" count="2" class="HtmlCell"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="AccountDetails.Title" count="2" class="HtmlCell"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home" count="20" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuAccountDetails" count="2" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuLinks" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuLogin" count="7" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuLogout" count="1" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuRegister" count="7" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.MenuUserDetails" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Home.Role" count="2" class="HtmlElement"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Links" count="0" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Links.AddNewLink" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Links.Link" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login" count="7" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.Login" count="6" class="HtmlButton"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.MenuHome" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.MenuRegister" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.Password" count="9" class="HtmlEdit"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.PasswordError" count="0" class="HtmlElement"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.UserID" count="8" class="HtmlEdit"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Login.UserIDError" count="0" class="HtmlElement"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Logout" count="1" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register" count="7" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.DOB" count="8" class="HtmlEdit"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Email" count="8" class="HtmlEdit"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Female" count="4" class="HtmlRadioButton"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.MailingList" count="3" class="HtmlCheckBox"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Male" count="6" class="HtmlRadioButton"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.MenuHome" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.MenuLogin" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Name" count="8" class="HtmlEdit"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Register" count="6" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="Register.Title" count="7" class="HtmlComboBox"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="RegisterSuccess" count="6" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="RegisterSuccess.MenuHome" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="RegisterSuccess.MenuLogin" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="RegisterSuccess.Password" count="2" class="HtmlElement"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="UserDetails" count="0" class="HtmlDocument"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="UserDetails.MenuHome" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="UserDetails.MenuLogout" count="0" class="HtmlLink"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="UserDetails.Total" count="0" class="HtmlElement"/>
+<object mapfile="Example_Selenium.ObjectMap.xlsx" system="False" name="UserDetails.UserTable" count="0" class="HtmlTable"/>
+</object_coverage>

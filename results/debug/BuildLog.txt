@@ -1,0 +1,103 @@
+Axe Build Log
+=============
+
+Axe Version: 4.5.0.21
+
+2019/10/17 11:19:26
+
+Test Project:  C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\Example.tpj
+Test Suite:    debug
+Configuration: Selenium
+Workbook:      C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx
+Worksheet:     RunAll
+Tests:         0 test(s)
+ProvisionData: True
+
+--------------------
+
+ObjectMap load C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\ObjectMap\Example.objectmap
+ActionMap load C:\Program Files (x86)\Odin Technology\Axe\ActionMap\CSharp.ActionMap.xlsx
+ActionMap load C:\Program Files (x86)\Odin Technology\Axe\ActionMap\SeleniumCSharp.ActionMap.xlsx
+INFO: Action value overridden -- ._TESTINIT.0
+INFO: Action value overridden -- ._TESTPREFIX.0
+INFO: Action value overridden -- ._TESTEND.1
+INFO: Action value overridden -- .SAVE.SCREEN.0
+INFO: Action value overridden -- .SAVE.SCREEN.1
+ActionMap load C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\ActionMap\Example.ActionMap.xlsx
+
+Test:     OPLI001 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+
+Test:     OPLI010 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withAdmin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - checkAdmin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+
+Test:     OPLI020 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - checkBlank (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+
+Test:     OPRG001 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG002 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser2 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG003 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser3 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG004 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser4 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG005 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser5 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG010 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - checkDefault (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+
+Test:     OPRG100_01 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectRegister (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Register - usingNewUser100 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Register)
+Sub-test: RegisterSuccess - saveUser100Password (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: RegisterSuccess)
+
+Test:     OPRG100_02 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withUser100 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+
+Test:     OPLO001 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - selectLogout (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Logout - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Logout)
+
+Test:     OPAD001 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - selectAccountDetails (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: AccountDetails - pageDisplayed (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: AccountDetails)
+
+Test:     OPAD002 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: MyTests)
+Sub-test: Home - selectLogin (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: Login - withUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Login)
+Sub-test: Home - selectAccountDetails (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: Home)
+Sub-test: AccountDetails - checkUser1 (Workbook: C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\data\ExampleTests.xlsx Worksheet: AccountDetails)
+Build completed OK
+Errors: 0 Warnings: 0 Informational: 5
+14 test(s) built successfully
+2019/10/17 11:19:28
+
+End

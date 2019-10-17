@@ -1,0 +1,772 @@
+/* --------------------- Axe Results and Documentation CSS ------------------------------------------
+#
+#	Copyright:	(c)Copyright 2004-2013 Odin Technology Ltd. All Rights Reserved.
+#	Version:	v4.0
+#	Contact:	www.odintech.com
+#
+# --------------------------------------------------------------------------------------------------- */
+
+body.main
+{
+	font-family: Arial;
+	background: white;
+}
+p.copyright
+{
+	
+	font-family: Arial;
+	font-size: xx-small;
+	text-align:  center;	
+}
+
+/* -- DIV Panels -- */
+
+div.mainheading
+{
+	color: #000066;
+	font-family: Arial;
+	font-size: large;
+	font-weight:bold;
+	background: #CCCCFF;
+	border: solid 1px;
+	border-color:Black;
+	padding: 4px;
+}
+div.panelheading
+{
+	color: #000066;
+	font-family: Arial;
+	font-size: medium;
+	font-weight:bold;
+	background: #CCCCFF;
+	border: solid 1px;
+	border-color:Black;
+	padding: 4px;
+}
+div.expandableheading
+{
+	background: #CCCCFF;
+	border: solid 1px;
+	border-color:Black;
+}
+div.subpanel
+{
+	color: #000066;
+	font-family: Arial;
+	font-size: large;
+	background: #CCCCCC;
+	border: solid 1px;
+	border-color:Black;
+	padding: 4px;
+	
+}
+div.resultspanel
+{
+	color: #000066;
+	font-family: Arial;
+	font-size: large;
+	background: #CCCCCC;
+	border: solid 1px;
+	border-color:Black;
+}
+
+/* -- Tables -- */
+
+table.summary
+{
+	border-collapse: collapse;
+	border: 0; 	
+}
+table.resultsheading
+{
+	border: 0; 
+}
+table.results
+{
+	border-collapse: collapse;
+	border: 0; 
+}
+table.buttons
+{
+	border: 0; 
+}
+
+/* -- Table Rows -- */
+
+tr.heading
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight:bold;
+	color: #000066;
+	background:#9999CC;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+
+@media screen
+{
+	td.value,
+	td.valuelink,
+	td.valueHyperlink,
+	td.valuepassclick,
+	td.valuepass,
+	td.valuefail,
+	td.valuefailprereq,
+	td.valuenotrun,
+	td.valuefailclick,
+	td.valuefailprereqclick,
+	td.message,
+	th.rowlabel,
+	th.vrowlabel,
+	th.spanninglabel,
+	th.heading
+	{
+		border: solid 1px #CCCCCC;
+	}
+}
+@media print
+{
+	td.value,
+	td.valuelink,
+	td.valueHyperlink,
+	td.valuepassclick,
+	td.valuepass,
+	td.valuefail,
+	td.valuefailprereq,
+	td.valuenotrun,
+	td.valuefailclick,
+	td.valuefailprereqclick,
+	td.message,
+	th.rowlabel,
+	th.vrowlabel,
+	th.spanninglabel,
+	th.heading
+	{
+		border: solid 1px Black;
+	}
+}
+
+/* -- Table Headers -- */
+
+th.heading
+{
+	font-family:Arial;
+	font-size: small;
+	font-weight:bold;
+	color: #000066;
+	background:#9999CC;
+	padding-left: 4px;
+	padding-right: 8px;
+	text-align:left;	
+}
+
+th.headerSort
+{
+	font-family:Arial;
+	font-size: small;
+	font-weight:bold;
+	color: #000066;
+	background:#9999CC;
+	padding-left: 4px;
+	padding-right: 28px;
+	text-align:left;
+	background-image: url('bg.gif');
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+th.headerSortUp
+{
+	background-image: url('asc.gif');
+}
+
+th.headerSortDown
+{
+	background-image: url('desc.gif');
+}
+
+th.rowlabel
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight:bold;
+	color:#000066;
+	background:#E3E3E3;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:right;
+}
+th.vrowlabel
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight:bold;
+	color:#000066;
+	background:#9999CC;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:right;
+}
+th.spanninglabel
+{
+	font-family:Arial;
+	font-size:smaller;
+	font-weight:bold;
+	color:#000066;
+	background:#9999CC;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+
+/* -- Table Cells -- */
+
+td.expandabletitle
+{
+	color: #000066;
+	font-family: Arial;
+	font-size: small;
+	font-weight:bold;
+}
+td.value
+{
+	font-family:Arial;
+	font-size:small;
+	color:black;
+	background:white;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+
+td.valuelink
+{
+	font-family:Arial;
+	font-size:smaller;
+	color:black;
+	background:white;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.valueHyperlink
+{
+	font-family:Arial;
+	font-size:smaller;
+	text-decoration:underline;
+	color:blue;
+	background:white;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.datafileclick
+{
+	font-family:Arial;
+	font-size:smaller;
+	color:rgb(12,102,240);
+	background:white;
+	text-decoration:underline;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+div.valueclick
+{
+	cursor:pointer;
+}
+td.runpassclick
+{
+	font-family:Arial;
+	font-size:smaller;
+	font-weight: bold;
+	color:black;
+	background:#99FF99;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.valuepassclick
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight: bold;
+	color:black;
+	background:#99FF99;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.valuepass
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight: bold;
+	color:black;
+	background:#99FF99;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+td.valuefail
+{
+	font-family:Arial;
+	font-size: small;
+	font-weight: bold;
+	color:black;
+	background:#FF6666;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+td.valuefailprereq
+{
+	font-family:Arial;
+	font-size:smaller;
+	font-weight: bold;
+	color:black;
+	background:#FFFFA8;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+td.valuenotrun
+{
+	font-family:Arial;
+	font-size: small;
+	font-weight: bold;
+	color:black;
+	background:#E3E3E3;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+td.runfailclick
+{
+	font-family:Arial;
+	font-size:smaller;
+	font-weight: bold;
+	color:black;
+	background:#FF6666;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.valuefailclick
+{
+	font-family:Arial;
+	font-size:small;
+	font-weight: bold;
+	color:black;
+	background:#FF6666;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.valuefailprereqclick
+{
+	font-family:Arial;
+	font-size: small;
+	font-weight: bold;
+	color:black;
+	background:#FFFFA8;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+	cursor:pointer;
+}
+td.message
+{
+	font-family:Arial;
+	font-size: small;
+	color:black;
+	background:#D3D3D3;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+td.messagewithborder
+{
+	font-family:Arial;
+	font-size:smaller;
+	color:black;
+	background:#E3E3E3;
+	border: solid 1px black;
+	padding-left: 8px;
+	padding-right: 8px;
+	text-align:left;
+}
+/* -- Buttons -- */
+
+td.button
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+}
+td.expbutton
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+	width: 12px;
+}
+
+td.expbuttonrun
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+	width: 12px;
+}
+
+td.expbuttonrunmaster
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+	width: 12px;
+}
+
+td.expbuttonsubtest
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+	width: 12px;
+}
+
+td.expbuttonbs
+{
+	background: #D3D3D3;
+	font-size:smaller;
+	font-family: arial;
+	border: solid 1px black;
+	text-align:center;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor:pointer;
+	width: 12px;
+}
+
+div.iterSummary
+{
+	cursor:pointer;
+}
+
+img.prevTest, img.nextTest, img.prevTestNull, img.nextTestNull, img.prevIter, img.nextIter, img.prevIterNull, img.nextIterNull
+{
+	margin-top:2px;
+	margin-right:6px;
+	cursor: pointer;
+	height: 12px;
+	width: 12px;
+}
+
+/* ----------------------------------------------- Documentation --------------------------------------------*/
+
+p.heading1
+{
+	font-family: Arial;
+	font-size: large;
+	font-weight:bold;	
+}
+p.heading2
+{
+	font-family: Arial;
+	font-size: larger;
+	font-weight:bold;	
+	font-style:italic;
+}
+table.docsteps
+{
+	border-collapse: collapse;
+}
+th.docheading
+{
+	font-family:Arial;
+	font-size:smaller;
+	font-weight:bold;
+	color:black;
+	background:#9999CC;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border: solid 1px Black;
+	text-align:left;
+	vertical-align: text-top;
+}
+td.docvalue
+{
+	font-family:Arial;
+	font-size:smaller;
+	color:black;
+	background:white;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border: solid 1px Black;
+	text-align:left;
+	vertical-align: text-top;
+}
+td.docvaluelink
+{
+	font-family:Arial;
+	font-size:smaller;
+	text-decoration:underline;
+	color:blue;
+	background:white;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border: solid 1px Black;
+	text-align: left;
+	vertical-align: text-top;
+	cursor:pointer;
+}
+td.docvaluefirst
+{
+	font-family: Arial;
+	font-size: smaller;
+	color: black;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border: solid 1px Black;
+	text-align: left;
+	vertical-align: text-top;
+}
+td.docvaluefirstsub
+{
+	font-family: Arial;
+	font-size: smaller;
+	font-weight: bold;
+	color: black;
+	background: #CCCCCC;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border: solid 1px Black;
+	text-align: left;
+	vertical-align: text-top;
+}
+td.docsub
+{
+	font-family:Arial;
+	font-size: smaller;
+	font-weight: bold;
+	color:black;
+	background:#CCCCCC;
+	padding-left: 8px;
+	padding-right: 8px;
+	border: solid 1px Black;
+	text-align:left;
+}
+
+@media print
+{
+	div.notprinted
+	{
+		visibility: hidden;
+	}
+	div.button
+	{
+		visibility: hidden;
+	}	
+	div.select
+	{
+		visibility: hidden;
+	}	
+	span.hyperlink
+	{
+		visibility: hidden;
+	}
+}
+@media screen
+{
+	div.notprinted
+	{
+		visibility: inherit;
+	}
+	div.button
+	{
+		visibility: inherit;
+	}
+	span.hyperlink
+	{
+		font-family:Arial;
+		font-size:smaller;
+		text-decoration:underline;
+		color:blue;
+		cursor:pointer;
+		visibility: inherit;
+	}
+}
+
+/* --------------------- Axe Web Report NavigationBar CSS ------------------------------------------
+#
+#	Copyright:	(c)Copyright 2012-2013 Odin Technology Ltd. All Rights Reserved.
+#	Contact:	www.odin.co.uk
+#
+# --------------------------------------------------------------------------------------------------- */
+
+#cssmenu ul {
+  margin: 0;
+  padding: 0;
+}
+#cssmenu li {
+  margin: 0;
+  padding: 0;
+}
+#cssmenu a {
+  margin: 0;
+  padding: 0;
+}
+#cssmenu ul {
+  list-style: none;
+}
+#cssmenu a {
+  text-decoration: none;
+}
+#cssmenu {
+  height: 30px;
+  background-color: #7777AA;
+  width: auto;
+}
+#cssmenu > ul > li {
+  float: left;
+  margin-left: 0px;
+  margin-right: 10px;
+  position: relative;
+}
+#cssmenu > ul > li > a {
+  color: #DDDDDD;
+  font-family: Verdana, 'Lucida Grande';
+  font-size: 15px;
+  line-height: 30px;
+  padding: 5px 5px;
+  -webkit-transition: color .15s;
+  -moz-transition: color .15s;
+  -o-transition: color .15s;
+  transition: color .15s;
+}
+#cssmenu > ul > li > a:hover {
+  color: #ffffff;
+  background-color: #7777AA;
+}
+#cssmenu > ul > li > ul {
+  opacity: 0;
+  visibility: hidden;
+  padding: 0px 0 0px 0;
+  background-color: #0000AA;
+  text-align: left;
+  position: absolute;
+  top: 30px;
+  left: 0%;
+  margin-left: 0px;
+  width: 160px;
+  -webkit-transition: all .3s .1s;
+  -moz-transition: all .3s .1s;
+  -o-transition: all .3s .1s;
+  transition: all .3s .1s;
+}
+#cssmenu > ul > li:hover > ul {
+  opacity: 1;
+  top: 30px;
+  visibility: visible;
+}
+#cssmenu > ul > li > ul:before {
+  content: '';
+  display: block;
+  border-color: transparent transparent #fafafa transparent;
+  border-style: solid;
+  border-width: 0px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -10px;
+}
+#cssmenu > ul ul > li {
+  position: relative;
+}
+#cssmenu ul ul a {
+  color: #DDDDDD;
+  font-family: Verdana, 'Lucida Grande';
+  font-size: 13px;
+  background-color: #7777AA;
+  padding: 5px 8px 7px 16px;
+  display: block;
+  -webkit-transition: background-color 0.1s;
+  -moz-transition: background-color 0.1s;
+  -o-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+}
+#cssmenu ul ul a:hover {
+  color: #FFFFFF;
+  background-color: #AAAADD;
+}
+#cssmenu ul ul ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -6px;
+  left: 206px;
+  padding: 16px 0 20px 0;
+  background-color: #0000AA;
+  text-align: left;
+  width: 180px;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+}
+#cssmenu ul ul > li:hover > ul {
+  opacity: 1;
+  left: 120px;
+  visibility: visible;
+}
+#cssmenu ul ul a:hover {
+  background-color: #0000AA;
+  color: #FFFFFF;
+}
+

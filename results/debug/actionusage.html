@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Axe Action Usage Statistics</title>  
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript" src="jquery.tablesorter.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#loadError').hide();
+	$('#spinner').show();
+$("#systemMapsFilter").change(function()
+	{
+		var selected = $("#systemMapsFilter option:selected").val();
+		
+		if (selected == 'ShowAll')
+		{
+			ns_actionusage.showAll = 'True';
+		}
+		else
+		{
+			ns_actionusage.showAll = 'False';
+		}
+		loadPage(ns_actionusage.xmlFile, ns_actionusage.showAll);
+		$("#usageTable").tablesorter();
+	}
+);
+	
+ $.ajax({
+  type: "GET",
+  url: "ActionUsage.xml",
+  dataType: ($.browser.msie) ? "text" : "xml",
+  success: parseXml,
+  error:function (msg){
+		$('#spinner').hide();
+		$('#headerDiv').hide();
+		$('#systemMapsFilter').hide();
+		$('.subpanel').hide();
+		$('#loadError').show();
+	}
+ });
+});
+
+ns_actionusage = {};
+
+ns_actionusage.xmlFile = "";
+ns_actionusage.showAll = "False";
+
+function loadPage(data, showAll)
+{
+	$('#spinner').hide();
+	$('#loadError').hide();
+	
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	ns_actionusage.xmlFile = xml;
+	
+	var project = $(xml).find('project').text();
+	var config = $(xml).find('config').attr('name');
+	var testsuite = $(xml).find('testsuite').text();
+	
+	$('#headerDiv').html('');
+	var heading = '<div class="mainheading">' + 'Statistics - Action Usage - ' + project + ' - ' + testsuite + '</div><p/>';
+	$('#headerDiv').append(heading);
+	
+	var total = 0;
+	var unused = 0;
+	$("#usageTable").find("tbody").html("");
+	
+    $(xml).find('action').each(function(){
+		if (showAll == "True" || $(this).attr('system') == "False")
+		{
+			total = total + 1;
+			var action = $(this).attr('action');
+			var cls = $(this).attr('class');
+			var count = $(this).attr('count');
+			var doc = $(this).attr('documentation');
+			var overr = $(this).attr('overriden');
+			var docover = $(this).attr('documentation_overriden');
+			var mapfile = $(this).attr('mapfile');
+			var system = $(this).attr('system');
+			if (count == "0") unused = unused + 1;
+			
+			$("#usageTable").find("tbody")
+				.append('<tr class="resultrow"><td class="value">'+action+'</td><td class="value">'+cls+'</td><td class="value">'+count+'</td>'
+				+'<td class="value">'+doc+'</td><td class="value">'+overr+'</td><td class="value">'+docover+'</td>'
+				+'<td class="value">'+mapfile+'</td><td class="value">'+system+'</td></tr>');
+		}
+    });
+   
+    var usage = (total - unused) / total;
+    var percentage = (usage * 100).toFixed(1) + '%';
+	
+	$("#prj").html("");
+	$("#config").html("");
+	$("#suite").html("");
+   	$("#prj").append(project);
+	$("#config").append(config);
+	$("#suite").append(testsuite);
+	
+	$("#total").html("");
+	$("#unused").html("");
+	$("#usage").html("");
+ 
+  	$("#total").append(total);
+  	$("#unused").append(unused);
+  	$("#usage").append(percentage);
+
+	/*
+	$("#optionButton").html("");
+	if (showAll == "True")
+	{
+		ns_actionusage.showAll = "False";
+		$("#optionButton").append('<input type="button" id="showAllButton" value="Suppress System Maps"/>');
+	}
+	else
+	{
+		ns_actionusage.showAll = "True";
+		$("#optionButton").append('<input type="button" id="showAllButton" value="Show All"/>');
+	}
+	*/
+	$("#usageTable").trigger("update"); 
+	$("#usageTable").tablesorter();
+}
+
+$('#showAllButton').live('click',function() {
+    loadPage(ns_actionusage.xmlFile, ns_actionusage.showAll);
+	$("#usageTable").tablesorter();
+});
+
+function parseXml(xml)
+{
+	loadPage(xml, "False");
+	//$("#usageTable").tablesorter();
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+<style>
+.spinner {
+	position: fixed;
+	top: 30%;
+	left: 38%;
+	margin-left: 0px; /* half width of the spinner gif */
+	margin-top: 0px; /* half height of the spinner gif */
+	text-align:center;
+	z-index:1234;
+	overflow: auto;
+	width: 400px; /* width of the spinner gif */
+	height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+</style>
+</head>
+<body class="main">
+<div>
+<div id="headerDiv"></div>
+<p/>
+	<div id='cssmenu' class="notprinted">
+		<ul>
+		   <li class='active'><a href='documentation.html'><span>Documentation</span></a></li>
+		   <li class='has-sub'><a href='statistics.html'><span>Statistics</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='objectusage.html'><span>Object Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='actionusage.html'><span>Action Usage</span></a>
+				 </li>
+				 <li class='has-sub'><a href='subtestusage.html'><span>Subtest Usage</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='has-sub'><a href='index.html'><span>Results</span></a>
+			  <ul>
+				 <li class='has-sub'><a href='timers.html'><span>Timers</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='last'><a href='testreport.html'><span>Report</span></a></li>
+		</ul>
+	</div>
+	<p/>
+	
+	<div align="left" class="notprinted">
+		<select id="systemMapsFilter">
+			<option value="ShowAll">Show all actions</option>
+			<option selected value="SuppressSystemMaps">Do not include system maps</option>
+		</select>
+	</div>
+	<p/>
+	<!--
+<div class="subpanel">
+	<table class="summary">
+    <tr>		
+		<td class="value"><a href="index.html">Run Summary</a></td>
+		<td>&#160;&#160;</td>
+		<td class="value"><a href="objectusage.html">Object Usage</a></td>
+		<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>
+		<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+		<td id="optionButton">	
+		</td>		
+    </tr>
+	</table>	
+</div>
+-->
+<div class="subpanel">
+  <table class="summary" id="table2">
+  <!--
+    <tr>
+      <th class="vrowlabel">Project</th>
+      <td class="value" id="prj"></td>
+    </tr>
+	-->
+    <tr>
+      <th class="vrowlabel">Configuration</th>
+      <td class="value" id="config"></td>
+    </tr>
+	<!--
+    <tr>
+      <th class="vrowlabel">Test Suite</th>
+      <td class="value" id="suite"></td>
+    </tr>
+	-->
+  </table>						
+</div>
+    <p/>
+<div class="subpanel">
+  <table class="summary">
+    <tr>
+      <th class="vrowlabel">Total Actions</th>
+
+<td class="value" id="total">
+   
+</td>
+   
+      <th class="vrowlabel">Unused Actions</th>
+
+<td class="value" id="unused">
+   
+</td>
+   
+      <th class="vrowlabel">Usage</th>
+
+<td class="value" id="usage">
+</td>
+    </tr>
+
+  </table>
+</div>
+	<div id="loadError" class="spinner" style={display:none}>
+		<p>Axe failed to load action usage. Please ensure the file "actionusage.xml" exists.</p>
+	</div>	
+<div class="subpanel">
+	<table class="results" id="usageTable">
+		<thead> 
+			<tr class="heading">
+				<th class="headerSort">Action	</th>
+				<th class="headerSort">Class</th>
+				<th class="headerSort">Count</th>
+				<th class="headerSort">Documentation</th>
+				<th class="headerSort">Overriden</th>
+				<th class="headerSort">Docs Overriden</th>
+				<th class="headerSort">Map</th>
+				<th class="headerSort">System</th>
+			 </tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+</div>
+<div id="spinner" class="spinner" style={display:none}>
+		<p>Please wait, Axe is loading results</p>
+		<img id="img-spinner" src="loader.gif" alt="Loading"/>
+	</div>	
+<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+</body>
+</html>

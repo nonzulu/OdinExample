@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<test>
+<userfields>
+</userfields>
+<projectname>Example</projectname><configuration>Selenium</configuration><buildtimestamp>2019/10/17 11:19:26</buildtimestamp><id>OPRG001</id><table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><resultfile>C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/results/debug/results.xml</resultfile><description>Verify registration of a new user - all possible info</description> <datasource></datasource>
+<basestate><action>Restart.Home</action><description>
+Close all open web browsers, navigate to the Home page.
+</description></basestate>
+<subtest><id>selectRegister</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Select Register from the main menu</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>MenuRegister</object><action>set</action><data></data><description>
+Click on the &quot;MenuRegister&quot; link.
+</description></step>
+</subtest>
+<subtest><id>usingNewUser1</id><table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Register a new user with all possible information</description> 
+<step type="Set"><object>[]Register</object><action>set</action><data></data><description>
+Ensure the &quot;Register&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>Title</object><action>set</action><data>Mr</data><description>
+Enter or select the value &quot;Mr&quot; in the &quot;Title&quot; field.
+</description></step>
+<step type="Set"><object>Name</object><action>set</action><data>Adam Brown</data><description>
+Enter the value &quot;Adam Brown&quot; into the &quot;Name&quot; field.
+</description></step>
+<step type="Set"><object>Male</object><action>set</action><data></data><description>
+Click on the &quot;Male&quot; radio button, ensuring it becomes selected.
+</description></step>
+<step type="Set"><object>DOB</object><action>set</action><data>01/12/1975</data><description>
+Enter the value &quot;01/12/1975&quot; into the &quot;DOB&quot; field.
+</description></step>
+<step type="Set"><object>Email</object><action>set</action><data>a.brown@testing.com</data><description>
+Enter the value &quot;a.brown@testing.com&quot; into the &quot;Email&quot; field.
+</description></step>
+<step type="Set"><object>MailingList</object><action>set</action><data>1</data><description>
+Ensure the &quot;MailingList&quot; checkbox is in state &quot;1&quot; (Selected for state &quot;&quot; or &quot;1&quot;,  not selected for state &quot;0&quot;)
+</description></step>
+<step type="Set"><object>Register</object><action>set</action><data></data><description>
+Click on the &quot;Register&quot; link.
+</description></step>
+</subtest>
+<subtest><id>pageDisplayed</id><table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Check that registration has been successful</description> 
+<step type="Set"><object>[]RegisterSuccess</object><action>set</action><data></data><description>
+Ensure the &quot;RegisterSuccess&quot; page is displayed in the browser.
+</description></step>
+</subtest>
+</test>

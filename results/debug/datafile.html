@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>  
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	var file = getDataFile();
+	if (file !== '')
+	{
+		$.ajax({
+			type: "GET",
+			url: file,
+			dataType: ($.browser.msie) ? "text" : "xml",
+			success: parseXml
+		});
+	}
+});
+
+function parseXml(data)
+{
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	var root = $(xml).children('Data').children('Rows');
+	
+	var rowIdAttribute = 'OdinAxeRowId';
+	
+	// read data fields from row 0 
+	var exampleRow = $(root).children('Row').filter(function() {return $(this).attr(rowIdAttribute) == '0';});
+	
+	var dataFields = new Array();
+	var index = 0;
+	$(exampleRow).children().each(function(){
+		dataFields[index] = this.tagName;
+		index++;
+    });
+
+	var iterationsTable = '<table class="results" id="iterationsTable"><tr class="heading"><th>Row&#160;&#160;&#160;&#160;</th>';
+	for (var i=0; i<index; i++)
+	{
+		iterationsTable += '<th>' + dataFields[i] + '&#160;&#160;&#160;&#160;</th>';
+	}
+	iterationsTable += '</tr></table>';
+	$('#DataDiv').append(iterationsTable);
+	
+	
+	
+	var count = 0;
+	$(root).children('Row').each(function() {
+			var id = $(this).attr(rowIdAttribute);
+			
+			if (id == null)
+			{
+				id = $(this).attr('Id');
+			}
+			
+			var iterationHtml = '';
+			if (count%2 !== 0)
+			{
+				iterationHtml = '<tr class="d0"><td class="value">' + id + '</td>';	
+			}
+			else
+			{
+				iterationHtml = '<tr class="d1"><td class="value">' + id + '</td>';	
+			}
+			count++;
+			
+			for (var i=0; i<index; i++)
+			{
+				var field = dataFields[i];
+				var val = $(this).children(field).text();
+				iterationHtml += '<td class="value">' + val + '</td>';
+			}
+			
+			iterationHtml += '</tr>';	
+			$('#iterationsTable').append(iterationHtml);
+	});
+	
+}
+
+function getDataFile()
+{
+	var QS_query = false;
+	var QS_runid = "";
+	var QS_testid = "";
+	if(location.search !== null)
+	{		
+		if(location.search.length > 1) 
+		{	
+			QS_query=true;
+			querystring = location.search;
+			querystring = querystring.substring(1,querystring.length)
+			for(var i=0;i<querystring.split("&").length;i++)
+			{
+				tmpStr = querystring.split("&")[i].split("=")[0];
+				tmpValue = querystring.split("&")[i].split("=")[1];
+				switch(tmpStr)
+				{
+					case "run":
+						QS_runid = tmpValue;
+						break;
+					case "test":
+						QS_testid = tmpValue;
+						break;
+					default: 								
+				}
+			}
+		}	
+	}
+	
+	if (QS_query)
+	{
+		var header = 'Data used in Run: ' + QS_runid + '    Test: ' + QS_testid;
+		$('#dataHeading').html(header);
+		return 'Data\\' + QS_runid + '\\' + QS_testid + '.xml';
+	}
+	else
+	{
+		return '';
+	}
+}
+
+$('tr:not(:first)').live("mouseover", function() {
+	$(this).children().css('background-color', 'lightblue');
+}).live("mouseout", function() {
+    $(this).children().css('background-color', '');
+});
+</script>
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+<style type="text/css">
+tr.d0 td {
+	background-color: white; color: black;
+}
+tr.d1 td {
+	background-color: #F0FFFF; color: black;
+}
+</style>
+</head>
+<body class="main">
+	<div class="panelheading" id="dataHeading"></div>
+	<p />
+	<div id="DataDiv">
+	</div>
+	<p/>
+	<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+</body>
+</html>

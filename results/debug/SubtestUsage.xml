@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<subtest_coverage>
+<project>Example</project>
+<config file="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\config\Selenium.BuildConfig.xml" name="Selenium"/>
+<testsuite>debug</testsuite>
+<subtest><name>ExampleTests:AccountDetails:checkUser1</name><count>1</count></subtest>
+<subtest><name>ExampleTests:AccountDetails:pageDisplayed</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Home:checkAdmin</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Home:pageDisplayed</name><count>2</count></subtest>
+<subtest><name>ExampleTests:Home:selectAccountDetails</name><count>2</count></subtest>
+<subtest><name>ExampleTests:Home:selectLinks</name><count>0</count></subtest>
+<subtest><name>ExampleTests:Home:selectLogin</name><count>7</count></subtest>
+<subtest><name>ExampleTests:Home:selectLogout</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Home:selectRegister</name><count>7</count></subtest>
+<subtest><name>ExampleTests:Home:selectUserDetails</name><count>0</count></subtest>
+<subtest><name>ExampleTests:Login:checkBlank</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Login:withAdmin</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Login:withUser1</name><count>4</count></subtest>
+<subtest><name>ExampleTests:Login:withUser100</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Logout:pageDisplayed</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:checkDefault</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser1</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser100</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser2</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser3</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser4</name><count>1</count></subtest>
+<subtest><name>ExampleTests:Register:usingNewUser5</name><count>1</count></subtest>
+<subtest><name>ExampleTests:RegisterSuccess:pageDisplayed</name><count>5</count></subtest>
+<subtest><name>ExampleTests:RegisterSuccess:saveUser100Password</name><count>1</count></subtest>
+</subtest_coverage>

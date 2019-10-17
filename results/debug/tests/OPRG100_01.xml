@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<test>
+<userfields>
+</userfields>
+<projectname>Example</projectname><configuration>Selenium</configuration><buildtimestamp>2019/10/17 11:19:26</buildtimestamp><id>OPRG100_01</id><table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><resultfile>C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/results/debug/results.xml</resultfile><description>Register a new user and save password</description> <datasource></datasource>
+<basestate><action>Restart.Home</action><description>
+Close all open web browsers, navigate to the Home page.
+</description></basestate>
+<subtest><id>selectRegister</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Select Register from the main menu</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>MenuRegister</object><action>set</action><data></data><description>
+Click on the &quot;MenuRegister&quot; link.
+</description></step>
+</subtest>
+<subtest><id>usingNewUser100</id><table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Register a user for login testing</description> 
+<step type="Set"><object>[]Register</object><action>set</action><data></data><description>
+Ensure the &quot;Register&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>Title</object><action>set</action><data>Mr</data><description>
+Enter or select the value &quot;Mr&quot; in the &quot;Title&quot; field.
+</description></step>
+<step type="Set"><object>Name</object><action>set</action><data>Fred White</data><description>
+Enter the value &quot;Fred White&quot; into the &quot;Name&quot; field.
+</description></step>
+<step type="Set"><object>Male</object><action>set</action><data></data><description>
+Click on the &quot;Male&quot; radio button, ensuring it becomes selected.
+</description></step>
+<step type="Set"><object>DOB</object><action>set</action><data>30/03/1978</data><description>
+Enter the value &quot;30/03/1978&quot; into the &quot;DOB&quot; field.
+</description></step>
+<step type="Set"><object>Email</object><action>set</action><data>f.white@testing.com</data><description>
+Enter the value &quot;f.white@testing.com&quot; into the &quot;Email&quot; field.
+</description></step>
+<step type="Set"><object>Register</object><action>set</action><data></data><description>
+Click on the &quot;Register&quot; link.
+</description></step>
+</subtest>
+<subtest><id>saveUser100Password</id><table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Save new users password</description> 
+<step type="Set"><object>[]RegisterSuccess</object><action>set</action><data></data><description>
+Ensure the &quot;RegisterSuccess&quot; page is displayed in the browser.
+</description></step>
+<step type="Get"><object>Password</object><action>get</action><data></data><description>
+Obtain the text displayed in the &quot;Password&quot; web element
+</description></step>
+<step type="Unknown"><object>Password</object><action>save</action><data></data><description>
+Make a manual note (e.g. on a separate sheet of paper) of the obtained value (it will be referred to later as &quot;Password&quot;)
+</description></step>
+</subtest>
+</test>

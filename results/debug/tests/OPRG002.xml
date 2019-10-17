@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<test>
+<userfields>
+</userfields>
+<projectname>Example</projectname><configuration>Selenium</configuration><buildtimestamp>2019/10/17 11:19:26</buildtimestamp><id>OPRG002</id><table name="MyTests" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><resultfile>C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/results/debug/results.xml</resultfile><description>Verify registration of a new user - female</description> <datasource></datasource>
+<basestate><action>Home</action><description>
+Using an open web browser, navigate to the Home page.
+</description></basestate>
+<subtest><id>selectRegister</id><table name="Home" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Select Register from the main menu</description> 
+<step type="Set"><object>[]Home</object><action>set</action><data></data><description>
+Ensure the &quot;Home&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>MenuRegister</object><action>set</action><data></data><description>
+Click on the &quot;MenuRegister&quot; link.
+</description></step>
+</subtest>
+<subtest><id>usingNewUser2</id><table name="Register" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Register a new female user</description> 
+<step type="Set"><object>[]Register</object><action>set</action><data></data><description>
+Ensure the &quot;Register&quot; page is displayed in the browser.
+</description></step>
+<step type="Set"><object>Title</object><action>set</action><data>Mrs</data><description>
+Enter or select the value &quot;Mrs&quot; in the &quot;Title&quot; field.
+</description></step>
+<step type="Set"><object>Name</object><action>set</action><data>Belinda Green</data><description>
+Enter the value &quot;Belinda Green&quot; into the &quot;Name&quot; field.
+</description></step>
+<step type="Set"><object>Female</object><action>set</action><data></data><description>
+Click on the &quot;Female&quot; radio button, ensuring it becomes selected.
+</description></step>
+<step type="Set"><object>DOB</object><action>set</action><data>03/08/1980</data><description>
+Enter the value &quot;03/08/1980&quot; into the &quot;DOB&quot; field.
+</description></step>
+<step type="Set"><object>Email</object><action>set</action><data>b.green@testing.com</data><description>
+Enter the value &quot;b.green@testing.com&quot; into the &quot;Email&quot; field.
+</description></step>
+<step type="Set"><object>Register</object><action>set</action><data></data><description>
+Click on the &quot;Register&quot; link.
+</description></step>
+</subtest>
+<subtest><id>pageDisplayed</id><table name="RegisterSuccess" file="C:/Users/knzul/OneDrive/Documents/Axe Projects/Example/data/ExampleTests.xlsx"/><description>Check that registration has been successful</description> 
+<step type="Set"><object>[]RegisterSuccess</object><action>set</action><data></data><description>
+Ensure the &quot;RegisterSuccess&quot; page is displayed in the browser.
+</description></step>
+</subtest>
+</test>

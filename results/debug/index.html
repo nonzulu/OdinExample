@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html>
+<head>  
+<link type="text/css" rel="stylesheet" href="axe.css"/>
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript" src="json2.js"></script> 
+<script type="text/javascript" src="jquery.tablesorter.js"></script>
+<script type="text/javascript">
+
+var objXML;
+
+$(document).ready(function(){
+	$('#loadError').hide();
+	$('#spinner').show();
+	
+	$("#failOnlyFilter").change(function()
+	{
+		var selected = $("#failOnlyFilter option:selected").val();
+		if (selected == 'ShowAll')
+		{
+			ns_summary.showFailOnly = '';
+		}
+		else
+		{
+			ns_summary.showFailOnly = 'y';
+		}
+		Session.set('showFailOnly', ns_summary.showFailOnly);
+		loadPage(ns_summary.xmlFile, "Run", "||run_master||", "", '', "", "", ns_summary.showFailOnly, "");
+	});
+			
+	if ($.browser.msie)
+	{
+		objXML = new ActiveXObject("MSXML2.DOMDocument");
+		objXML.async = false;
+		objXML.validateOnParse = false;
+		
+		var res = objXML.load("results.xml");
+		
+		if (res == true)
+		{		
+			parseXml(objXML);		
+		}
+		else
+		{
+			$('#mainheadingProject').hide();
+			$('#failOnlyFilter').hide();
+			
+			$('.subpanel').hide();
+			$('#loadError').show();
+		}
+		$('#spinner').hide();	
+	}
+	else
+	{	
+		$.ajax({
+			type: "GET",
+			url: "results.xml",
+			dataType: ($.browser.msie) ? "text" : "xml",
+			success: parseXml,
+			error:function (msg){
+				$('#mainheadingProject').hide();
+				$('#failOnlyFilter').hide();
+				$('.subpanel').hide();
+				$('#spinner').hide();
+				$('#loadError').show();
+			}
+		});
+	}
+});
+	
+function loadPage(data, type, runid, test_index, test_id, subtestid, rmcall, failonly, row)
+{
+	var xml;
+    if (typeof data == "string") {
+       xml = new ActiveXObject("Microsoft.XMLDOM");
+       xml.async = false;
+       xml.loadXML(data);
+    } else {
+       xml = data;
+    }
+	
+	ns_summary.showFailOnly = failonly;
+	
+	ns_summary.runFromALM = false;
+	
+	var root = $(xml).children('testsuite');
+	var build = $(root).children('build');
+	
+	var project = $(root).children('name').text();
+	var config = $(build).children('config').attr('name');
+	var suite = $(build).children('name').text();
+
+	if ($(build).children('buildtimestamp').text().replace(/^\s+|\s+$/g, '') == '')
+	{	
+		ns_summary.runFromALM = true;		
+	}
+
+	// main heading and summary panel
+	$("#mainheadingProject").html('Test Results - ' + project + ' - ' + suite);
+	//$("#panelheadingSuite").html('Test Suite - ' + suite);
+	
+	//$('#subpanelLinks').html('');
+	
+	$('#subpanelSummary').html('');
+	$('#subpanelSummary').append('<th class="vrowlabel">Configuration</th>');
+	$('#subpanelSummary').append('<td class="value" id="subpanelConfig">' + config + '</td>');
+	//$('#subpanelLinks').append('<th class="vrowlabel">Links</th>');
+	
+	//Create the Title For a Test 
+	var title = "Axe Results - " + project + " (" + suite + ")";
+	document.title = title;
+	
+	ns_summary.inRunMasterContext = Session.get('inRunMaster');
+	
+	var testindex;
+	
+	if (type == "Run")
+	{
+		failonly = Session.get('showFailOnly');
+		if (failonly == undefined) { failonly = ''; }
+		ns_summary.showFailOnly = failonly;
+		
+		if (ns_summary.showFailOnly == 'y')
+		{
+			$("#failOnlyFilter").val('FailOnly');
+		}
+		else
+		{
+			$("#failOnlyFilter").val('ShowAll');
+		}
+		
+		//$('#subpanelLinks').append('<td class="value" id="subpanelDocLink"><a href="documentation.html">Documentation</a></td>');
+		//$('#subpanelLinks').append('<td class="value" id="subpanelReportLink"><a href="testreport.html">Report</a></td>');
+	}
+	else if (type == "Test")
+	{
+		$("#failOnlyFilter").hide();
+		var run = $(build).children('run').filter(function() { return $(this).children('name').text() == runid; });
+		
+		var test;
+		var testId;
+		if (test_id !== '')
+		{
+			test = $(run).children('test').filter(function() { return $(this).children('id').text() == test_id; });
+			testindex = $(test).children('index').text();
+			testId = test_id;
+			
+			$("#mainheadingProject").html('Test Results - ' + project + ' - ' + suite + ' - ' + test_id);
+		}
+		else
+		{	
+			testindex = test_index;
+			test = $(run).children('test').filter(function() { return $(this).children('index').text() == testindex; });
+			testId = $(test).children('id').text();
+			$("#mainheadingProject").html('Test Results - ' + project + ' - ' + suite + ' - ' + testId);
+		}
+		
+		var docUrl = "documentation.html?testid=" + testId;
+		var link = '<a href="' + docUrl + '">Documentation</a>';
+		//$('#subpanelLinks').append('<td class="value" id="subpanelDocLink">' + link + '</td>');
+		
+		if (ns_summary.inRunMasterContext == true) {
+			var reportRow = '0';
+			if (ns_summary.selectedRow !== -1 && ns_summary.selectedRow !== '') { reportRow = ns_summary.selectedRow; }
+			var reportUrl = "testreport.html?testid=" + testId + '&row=' + reportRow;
+			var reportLink = '<a href="' + reportUrl + '">Report</a>';
+			//$('#subpanelLinks').append('<td class="value" id="subpanelDocLink">' + reportLink + '</td>');
+		}
+	}
+	//$('#subpanelLinks').append('<td class="value"><a href="objectusage.html">Object Usage</a></td>');
+	//$('#subpanelLinks').append('<td class="value"><a href="actionusage.html">Action Usage</a></td>');
+	//$('#subpanelLinks').append('<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>');
+	
+	if (type == "Run")
+	{
+		//$('#subpanelLinks').append('<td class="value"><a href="timers.html">Transaction Timers</a>');
+		/*
+		$('#subpanelSummary').append('<td id="subpanelSummaryTab"><td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td></td>');
+		if (failonly == 'y')
+		{
+			$("#subpanelSummary").append('<td id="subpanelSummaryButton"><input type="button" id="showAllButton" value="Show all tests"></td>');
+		}
+		else
+		{
+			$("#subpanelSummary").append('<td id="subpanelSummaryButton"><input type="button" id="showAllButton" value="Show only fails"></td>');
+		}
+		*/
+	}
+	else if (type == "Test")
+	{
+		//$('#subpanelSummary').append('<td class="value"><a href="index.html">Run Summary</a></td>');		
+	}
+
+	// User Customisation [Risk Reporting]
+	// If you wish to display risk weighting and confidence reporting, please comment the below line out:
+	disableRiskReporting();
+	// End of User Customisation
+	
+	$('#Masters').html('');
+	$('#Runs').html('');
+	if (type == "Run")
+	{
+		var rmIndex = 0;
+		// run master
+		
+		$(build).children('run_master').each(function(){
+			var expname = '||run_master||';
+			var rmHtml = '<div class="expandableheading"><table class="resultsheading"><tr>';
+			var buttonHtml = "";
+			
+			if (runid.indexOf(expname) !== -1)
+			{
+				buttonHtml = '<td class="expbuttonrunmaster" id="rmExpButton' + rmIndex + '">-</td>';				
+			}
+			else
+			{
+				buttonHtml = '<td class="expbuttonrunmaster" id="rmExpButton' + rmIndex + '">+</td>';
+			}
+			
+			rmHtml += buttonHtml + '<td class="expandabletitle">Run Summary</td></tr></table></div>';
+			
+			$('#Masters').append(rmHtml);
+			
+			$('#rmExpButton'+rmIndex).data('runid', runid).data('expname', expname);					
+			
+			if (runid.indexOf(expname) !== -1)
+			{
+				var testcount = $(this).children('testcount').text();
+				var passcount = $(this).children('passcount').text();
+				var failcount = $(this).children('failcount').text();
+				var errorcount = $(this).children('errorcount').text();
+				var notruncount = $(this).children('notruncount').text();
+				
+				var rmexpHtmlId = 'rmexpHtml' + rmIndex;
+				var rmexpHtml = '<div class="subpanel" id="' + rmexpHtmlId + '"/>';
+				
+				$('#Masters').append(rmexpHtml);
+				
+				var rmexpTableSummary = '<table class="summary"><tr><th class="rowlabel">Tests</th><td class="value">' + testcount
+										+ '</td><th class="rowlabel">Passed</th><td class="value">' + passcount + '</td><th class="rowlabel">Failed</th><td class="value">'
+										+ failcount + '</td><th class="rowlabel">Error</th><td class="value">' + errorcount + '</td><th class="rowlabel">Not Run</th><td class="value">'
+										+ notruncount + '</td><th class="rowlabel" id="ConfidenceLabel">% Confidence</th><td class="value" id="Confidence"></td></tr></table><p/>';
+				
+				$('#' + rmexpHtmlId).append(rmexpTableSummary);
+				
+				var rmexpTableTestsId = 'rmexpTableTests' + rmIndex;
+				var rmexpTableTests = '<table class="results" id="' + rmexpTableTestsId + '"><tr class="heading"><th>Test</th><th>Result</th><th>Run</th><th>Finish</th><th>Time</th><th>Description</th>' 
+									+ '<th id="RiskReporting">Weighting</th>'
+									+ '<th>Screenshot</th><th>Iterations</th></tr></table>';
+				
+				$('#' + rmexpHtmlId).append(rmexpTableTests);
+								
+				var sumRisk = 0;
+				var successRisk = 0;
+				
+				var cachedRunName = '';
+				var cachedRun = null;
+				var cachedRunChildrenTests = null;
+				var run = null;
+				var testdetail;
+				
+				$(this).children('test').each(function(){
+					var runname = $(this).children('run').text();
+					var isDDT = $(this).children('datadriven').text();
+					var exprunname = '|' + runname + '|';
+					var id = $(this).children('id').text();
+					
+					var result = $(this).children('result').text();
+					var finish = $(this).children('finish').text();
+					var time = $(this).children('time').text();
+					var description = $(this).children('description').text();
+					var testinrunindex = $(this).children('test_index').text();
+					var masterTestSuccess = $(this).children('success').text();
+			
+					var passcount = '0';
+					var failcount = '0';
+					var notruncount = '0';
+
+					testdetail = null;
+					if (isDDT == 'True' || ns_summary.riskReporting == true)
+					{
+						if (runname !== '' && testinrunindex !== '')
+						{
+							if (runname == cachedRunName)
+							{
+								run = cachedRun;
+							}
+							else
+							{
+								run = $(build).children('run').filter(function() {
+										return $(this).children('name').text() == runname;
+								});
+								cachedRun = run;
+								cachedRunName = runname;
+								cachedRunChildrenTests = run.children('test');
+							}
+
+							var i = parseInt(testinrunindex, 10);
+							testdetail = cachedRunChildrenTests.eq(i-1);
+						}
+					}
+					
+					if (isDDT == 'True' && testdetail !== null)
+					{
+						if ($(testdetail).children('passcount').length !== 0)
+						{
+							passcount = $(testdetail).children('passcount').text();
+						}
+						
+						if ($(testdetail).children('failcount').length !== 0)
+						{
+							failcount = $(testdetail).children('failcount').text();
+						}
+						if ($(testdetail).children('notruncount').length !== 0)
+						{
+							notruncount = $(testdetail).children('notruncount').text();
+						}
+					}
+					
+					passcount = parseInt(passcount, 10); 
+					failcount = parseInt(failcount, 10); 
+					notruncount = parseInt(notruncount, 10);
+					
+					var screenshot = "";
+					if (isDDT == 'False' && $(this).children('image').length == 1)
+					{
+						screenshot = $(this).children('image').text();
+					} else {
+						if ($(this).children('image').length > 1) {
+							screenshot = '*';
+						}
+					}
+					
+					var risk = '';
+					if (ns_summary.riskReporting == true && testdetail !== null)
+					{					
+						if ($(testdetail).children('userfields').length !== 0 && $(testdetail).children('userfields').children('userfield').length !== 0) {
+							var r = $(testdetail).children('userfields').children('userfield').filter(function() {
+								return $(this).children('name').text() == 'Weighting';
+							}).children('value').text();
+							if (r !== '') {
+								var intRisk = parseInt(r, 10);
+								sumRisk += intRisk;
+								if (masterTestSuccess == 'True') {
+									successRisk += intRisk;
+								}
+								risk = r;
+							}
+						}
+					}
+					
+					if (failonly == '' || (failonly == 'y' && result !== "Pass") )
+					{	
+						var idHtmlClass = "value";
+						
+						if (result == "Pass")
+						{
+							idHtmlClass = "valuepassclick";
+						}
+						else if (result == "Fail" || result == "Aborted" || result == "Basestate" || result == "Error" || result == "Aborted")
+						{
+							idHtmlClass = "valuefailclick";
+						}
+						else if (result == "NotRun")
+						{
+							idHtmlClass = "valuenotrun";
+						}
+						else if (result == "Dependency" || result == "Inconclusive")
+						{
+							idHtmlClass = "valuefailprereqclick";
+						}
+						
+						var uniqueid = "mastertest_" + runname.hashCode().toString() + "_" + id.hashCode().toString();
+						var td = '<td class="' + idHtmlClass + '" id="' + uniqueid + '">' + id + '</td>';
+
+						td += '<td class="value">' + result + '</td>';
+						td += '<td class="value">' + runname + '</td>';
+						td += '<td class="value">' + finish + '</td>';
+						td += '<td class="value">' + time + '</td>';
+						td += '<td class="value">' + description + '</td>';
+						td += '<td class="value" id="RiskReporting">' + risk + '</td>';
+						var screenshotHtml = "";
+						if (screenshot == "")
+						{
+							screenshotHtml = '&#160;';
+						}
+						else
+						{
+							if (screenshot == '*') {
+								screenshotHtml = '&#9734;';
+							} else {
+								screenshotHtml = '<a target="new" href="' + screenshot + '">View</a>';
+							}
+						}
+						
+						td += '<td class="value" style="text-align:center">' + screenshotHtml + '</td>';
+						
+						if (isDDT == 'True')
+						{	
+							var subresults = getIterationResultsWidth(passcount, failcount, notruncount);
+							var w1 = subresults.p;
+							var w2 = subresults.f;
+							var w3 = subresults.n;
+							var iterationsHtmlId = uniqueid + 'iter';
+							var iterationsHtml = '<div class="valueclick" id="' + iterationsHtmlId + '">';
+							if (w1 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w1 + 'px;text-align:center;background-color:#99FF99;border:0px solid #000;float:left">' + passcount + '</div>';
+							}
+							if (w2 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w2 + 'px;text-align:center;background-color:#FF6666;border:0px solid #000;float:left">' + failcount + '</div>';
+							}
+							if (w3 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w3 + 'px;text-align:center;background-color:#E3E3E3;border:0px solid #000;float:left">' + notruncount + '</div>';
+							}
+							iterationsHtml += '</div>';
+							td += '<td class="value">' + iterationsHtml + '</td>';
+						}
+						else
+						{
+							td += '<td class="value"></td>';
+						}
+						var tr = '<tr class="resultrow">' + td + '</tr>';
+						
+						$('#' + rmexpTableTestsId).append(tr);
+						
+						$('#'+uniqueid).data('runid', runname).data('testindex', testinrunindex).data('row', '').data('isRunMaster', 'y');
+						$('#'+iterationsHtmlId).data('runid', runname).data('testindex', testinrunindex).data('row', '').data('isRunMaster', 'y');
+					}
+				});
+
+
+				if (sumRisk == 0) {
+					$('#Confidence').append('N/A');
+				} else {
+					var confidenceResult = (100 * successRisk / sumRisk).toFixed(2).toString() + '% [' + successRisk + ' of ' + sumRisk + ']';
+					$('#Confidence').append(confidenceResult);
+				}				
+			}
+			rmIndex++;
+		});
+		
+		// runs
+		var runIndex = 0;
+		$(build).children('run').each(function() {
+			var runname = $(this).children('name').text();
+			var expname = '|' + runname + '|';		
+			var success = $(this).children('success').text();
+			var start = $(this).children('start').text();
+			var finish = $(this).children('finish').text();
+			var testcount = $(this).children('testcount').text();
+			var passcount = $(this).children('passcount').text();
+			var failcount = $(this).children('failcount').text();
+			var errorcount = $(this).children('errorcount').text();
+			var messages = $(this).children('messages');
+			var outputfiles = $(this).children('outputfiles');
+			
+			var runheading = '<div class="expandableheading"><table class="resultsheading"><tr>';
+			var buttonHtml = "";
+			
+			if (runid.indexOf(expname) !== -1)
+			{
+				buttonHtml = '<td class="expbuttonrun" id="runExpButton' + runIndex + '">-</td>';				
+			}
+			else
+			{
+				buttonHtml = '<td class="expbuttonrun" id="runExpButton' + runIndex + '">+</td>';
+			}
+			
+			var resultHtml = "";
+			if (success == "true")
+			{
+				resultHtml = '<td class="runpassclick" id="runExpResult' +runIndex + '">Pass</td>';
+			}
+			else
+			{
+				resultHtml = '<td class="runfailclick" id="runExpResult' +runIndex + '">&#160;Fail</td>';
+			}
+			
+			var runnameHtml = '<td class="expandabletitle">Run: ' + runname + '</td>';
+			runheading += buttonHtml + resultHtml + runnameHtml + '</tr></table></div>';
+			
+			$('#Runs').append(runheading);
+			
+			$('#runExpButton'+runIndex).data('runid', runid).data('expname', expname).data('index', runIndex).data('row', '');
+			$('#runExpResult'+runIndex).data('runid', runid).data('expname', expname).data('index', runIndex).data('row', '');
+						
+			if (runid.indexOf(expname) !== -1)
+			{
+				var runexpandId = 'runexpand' + runIndex;
+				var runexpand = '<div class="subpanel" id="' + runexpandId + '"/><p/>';
+				
+				$('#Runs').append(runexpand);
+								
+				var table1 = '<table class="results"><tr><th class="rowlabel">Start</th><td class="value">' + start + '</td><th class="rowlabel">Finish</th><td class="value">' + finish + '</td></tr></table>';
+				var table2 = '<table class="summary"><tr><th class="rowlabel">Tests</th><td class="value">' + testcount + '</td>' 
+							+ '<th class="rowlabel">Passed</th><td class="value">' + passcount + '</td>'
+							+ '<th class="rowlabel">Failed</th><td class="value">' + failcount + '</td>'
+							+ '<th class="rowlabel">Error</th><td class="value">' + errorcount + '</td></tr></table>';
+
+				$('#' + runexpandId).append(table1 + '<p />' + table2);
+				
+				if (messages.length !== 0 || outputfiles.length !== 0)
+				{
+					var msgoutput = '<p /><table class="summary">';
+					
+					if (messages.length !== 0)
+					{
+						var msghtml = '<tr><th class="vrowlabel">Messages</th><td class="value" colspan="5">';
+						$(messages).children('message').each(function() {
+							msghtml += $(this).text() + '<br/>';
+						});
+						msghtml += '</td></tr>';
+						msgoutput += msghtml;
+					}
+					if (outputfiles.length !== 0)
+					{
+						var outputhtml = '<tr><th class="vrowlabel">Files</th><td class="value" colspan="5">';
+						$(outputfiles).children('outputfile').each(function() {
+							outputhtml += '<a href="' + $(this).attr('file') + '">' + $(this).attr('name') + '</a><br/>';
+						});
+						outputhtml += '</td></tr>';
+						msgoutput += outputhtml;
+					}
+					
+					msgoutput += '</table>';
+					$('#' + runexpandId).append(msgoutput);
+				}
+				
+				// tests in run
+				var tmpcount = 0;
+				var testsInRunId = 'testsInRun' + runIndex;
+				var testsInRun = '<p /><table class="results" id="' + testsInRunId 
+								+ '"><tr class="heading"><th>Test</th><th>Result</th><th>Finish</th><th>Time</th><th>Description</th>' 
+								+ '<th>Screenshot</th><th>Iterations</th></tr></table>';
+				
+				$('#' + runexpandId).append(testsInRun);
+				
+				$(this).children('test').each(function() 
+				{
+					var testinrunindex = $(this).children('index').text();
+					var isDDT = $(this).children('datadriven').text();
+					var id = $(this).children('id').text();
+					var result = $(this).children('result').text();
+					var finish = $(this).children('finish').text();
+					var time = $(this).children('time').text();
+					var description = $(this).children('description').text();
+					var passcount = '0';
+					if ($(this).children('passcount').length !== 0)
+					{
+						passcount = $(this).children('passcount').text();
+					}
+					var failcount = '0';
+					if ($(this).children('failcount').length !== 0)
+					{
+						failcount = $(this).children('failcount').text();
+					}
+					var notruncount = '0';
+					if ($(this).children('notruncount').length !== 0)
+					{
+						notruncount = $(this).children('notruncount').text();
+					}
+					passcount = parseInt(passcount, 10); 
+					failcount = parseInt(failcount, 10); 
+					notruncount = parseInt(notruncount, 10); 
+					var image = "";
+					if (isDDT == 'False' && $(this).children('image').length == 1)
+					{
+						image = $(this).children('image').text();
+					} else {
+						if ($(this).children('image').length > 1) {
+							image = '*';
+						}
+					}
+					
+					if ((failonly == 'y' && result !== 'Pass') || failonly == '')
+					{
+						var testrow = '<tr class="resultrow">';
+						var idHtmlClass = "value";
+					
+						if (result == "Pass")
+						{
+							idHtmlClass = "valuepassclick";
+						}
+						else if (result == "Fail" || result == "Aborted" || result == "Basestate" || result == "Error" || result == "Aborted")
+						{
+							idHtmlClass = "valuefailclick";
+						}
+						else if (result == "NotRun")
+						{
+							idHtmlClass = "valuenotrun";
+						}
+						else if (result == "Dependency" || result == "Inconclusive")
+						{
+							idHtmlClass = "valuefailprereqclick";
+						}
+						
+						var uniqueid = "runtest_" + runname.hashCode().toString() + "_" + id.hashCode().toString() + "_" + testinrunindex;
+						var td = '<td class="' + idHtmlClass + '" id="' + uniqueid + '">' + id + '</td>';
+												
+						if (result == '')
+						{
+							td += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							td += '<td class="value">' + result + '</td>';
+						}
+
+						td += '<td class="value">' + finish + '</td>';
+						td += '<td class="value">' + time + '</td>';
+						
+						if (description == '')
+						{
+							td += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							td += '<td class="value">' + description + '</td>';
+						}	
+						
+						var imageHtml = "";
+						if (image == "")
+						{
+							imageHtml = '&#160;';
+						}
+						else
+						{
+							if (image == '*') {
+								imageHtml = '&#9734;';
+							} else {
+								imageHtml = '<a target="new" href="' + image + '">View</a>';
+							}
+						}
+						td += '<td class="value" style="text-align:center">' + imageHtml + '</td>';
+						
+						if (isDDT == 'True')
+						{
+							var subresults = getIterationResultsWidth(passcount, failcount, notruncount);
+							var w1 = subresults.p;
+							var w2 = subresults.f;
+							var w3 = subresults.n;
+							
+							var iterationsHtmlId = uniqueid + 'iter';
+							var iterationsHtml = '<div class="valueclick" id="' + iterationsHtmlId + '">';
+							if (w1 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w1 + 'px;text-align:center;background-color:#99FF99;border:0px solid #000;float:left">' + passcount + '</div>';
+							}
+							if (w2 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w2 + 'px;text-align:center;background-color:#FF6666;border:0px solid #000;float:left">' + failcount + '</div>';
+							}
+							if (w3 !== 0)
+							{
+								iterationsHtml += '<div style="width:' + w3 + 'px;text-align:center;background-color:#E3E3E3;border:0px solid #000;float:left">' + notruncount + '</div>';
+							}
+							iterationsHtml += '</div>';
+							td += '<td class="value">' + iterationsHtml + '</td>';
+						}
+						else
+						{
+							td += '<td class="value"></td>';
+						}					
+						testrow += td + '</tr>';
+						$('#' + testsInRunId).append(testrow);						
+						$('#' + uniqueid).data('runid', runname).data('testindex', testinrunindex).data('row', '');
+						$('#' + iterationsHtmlId).data('runid', runname).data('testindex', testinrunindex).data('row', '');
+					}					
+				});
+			}
+			runIndex++;
+		});	
+	
+	}
+	else if (type == 'Test')
+	{
+		//alert('Test');
+		$('#TestDiv').html('');
+		if (row == '')
+		{
+			row = 0;
+		}
+		var loop1 = 0;
+		
+		var runChildrenTests = $(build).children('run').filter(function() { 
+			return $(this).children('name').text() == runid;
+		}).children('test');
+		
+		var indexInRun = parseInt(testindex, 10) - 1;
+		
+		//alert(indexInRun);
+		
+		//$(build).children('run').filter(function() { 
+		//	return $(this).children('name').text() == runid;
+		//}).children('test').filter(function() { 
+		//	return $(this).children('index').text() == testindex;
+		//}).each(function() {
+		runChildrenTests.eq(indexInRun).each(function() {		
+			ns_summary.currentRun = runid;
+			ns_summary.currentTestIndex = testindex;
+			ns_summary.currentRow = row;
+			if (subtestid !== '*')
+			{
+				ns_summary.currentSubtestId = subtestid;
+			}
+			
+			var id = $(this).children('id').text();
+			ns_summary.inRunMasterContext = Session.get('inRunMaster');
+			ns_summary.showFailOnly = Session.get('showFailOnly');
+			if (ns_summary.inRunMasterContext == true)
+			{
+				var masterIndex = $(build).children('run_master').children('test').filter(function() { 
+					return $(this).children('id').text() == id;
+				}).children('index').text();
+				masterIndex = parseInt(masterIndex, 10);
+				
+				var prev = $(build).children('run_master').children('test').filter(function() {
+					if (ns_summary.showFailOnly == 'y')
+					{
+						return (parseInt($(this).children('index').text(), 10) < masterIndex) && ($(this).children('result').text() !== 'Pass');
+					}
+					else
+					{
+						return parseInt($(this).children('index').text(), 10) < masterIndex;
+					}
+				});
+				var next = $(build).children('run_master').children('test').filter(function() { 
+					if (ns_summary.showFailOnly == 'y')
+					{
+						return (parseInt($(this).children('index').text(), 10) > masterIndex) && ($(this).children('result').text() !== 'Pass');
+					}
+					else
+					{
+						return parseInt($(this).children('index').text(), 10) > masterIndex;
+					}
+				});
+				
+				ns_summary.prevRun = '';
+				ns_summary.nextRun = '';
+				if (prev.length !== 0)
+				{
+					ns_summary.prevRun = $(prev).last().children('run').text();
+					ns_summary.prevTestIndex = $(prev).last().children('test_index').text();
+				}
+				if (next.length !== 0)
+				{
+					ns_summary.nextRun = $(next).first().children('run').text();
+					ns_summary.nextTestIndex = $(next).first().children('test_index').text();
+				}
+			}
+			else
+			{
+				var currentIndex = parseInt(testindex, 10);
+				var prev = $(this).parent().children('test').filter(function() { 
+					return $(this).children('index').text() == currentIndex - 1;
+				});
+				var next = $(this).parent().children('test').filter(function() { 
+					return $(this).children('index').text() == currentIndex + 1;
+				});
+				
+				ns_summary.prevRun = '';
+				ns_summary.nextRun = '';
+				if (prev.length !== 0)
+				{
+					ns_summary.prevRun = runid;
+					ns_summary.prevTestIndex = currentIndex - 1;
+				}
+				if (next.length !== 0)
+				{
+					ns_summary.nextRun = runid;
+					ns_summary.nextTestIndex = currentIndex + 1;
+				}
+			}
+			
+			var result = $(this).children('result').text();
+			var start = $(this).children('start').text();
+			var finish = $(this).children('finish').text();
+			var time = $(this).children('time').text();
+			var description = $(this).children('description').text();
+			var tablename = '';
+			var tablefile = '';
+			if ($(this).children('table').length !== 0)
+			{
+				tablename = $(this).children('table').attr('name');
+				tablefile = $(this).children('table').attr('file');
+			}
+			
+			var datadriven = $(this).children('datadriven').text();
+			var datasource = '';
+			if (datadriven == 'True')
+			{
+				datasource = $(this).children('datasource').text();
+			}
+			
+			var screenshot = "";
+			if ($(this).find('image').length !== 0)
+			{
+				var screenshot = $(this).find('image').text();
+			}
+			
+			var testimage = '';
+			var imagesubtestindex = '';
+			var imagestepindex = '';
+			var testimageNode = $(this).children('image');
+			if (datadriven == 'False' && testimageNode.length == 1)
+			{
+				testimage = $(testimageNode).text();
+				imagesubtestindex = $(testimageNode).attr('subtest_index');
+				imagestepindex = $(testimageNode).attr('step_index');
+			}
+			
+			title = title + " - Run: " + runid + " - Test: " + id;
+			document.title = title;
+			var prevNext = '';
+			if (ns_summary.prevRun == '')
+			{
+				prevNext += '<img class="prevTestNull" src="leftArrowGrey.png" title="Previous Test"/>';
+			}
+			else
+			{
+				prevNext += '<img class="prevTest" src="leftArrow.png" title="Previous Test"/>';
+			}
+			
+			if (ns_summary.nextRun == '')
+			{
+				prevNext += '<img class="nextTestNull" src="rightArrowGrey.png" title="Next Test"/>';
+			}
+			else
+			{
+				prevNext += '<img class="nextTest" src="rightArrow.png" title="Next Test"/>';
+			}
+
+			var heading = '<div class="panelheading">' + prevNext + 'Run: ' + runid + ' - Test: ' + id + '</div>';
+			
+			$('#TestDiv').append(heading);
+			
+			
+			var panel = '<div class="subpanel" id="testSubPanel"></div>';
+			$('#TestDiv').append(panel);
+			
+			var testSummaryTable = '<table class="summary">'; 
+			
+			// result
+			var resultHtml = '<tr><th class="vrowlabel">Result</th>';
+			var resultHtmlClass = "value";
+					
+			if (result == "Pass")
+			{
+				resultHtmlClass = "valuepassclick";
+			}
+			else if (result == "Fail" || result == "Aborted" || result == "Basestate" || result == "Error" || result == "Aborted")
+			{
+				resultHtmlClass = "valuefailclick";
+			}
+			else if (result == "NotRun")
+			{
+				resultHtmlClass = "valuenotrun";
+			}
+			else if (result == "Dependency" || result == "Inconclusive")
+			{
+				resultHtmlClass = "valuefailprereqclick";
+			}
+			resultHtml += '<td class="' + resultHtmlClass + '" colspan="5">';
+			if (result == '')
+			{
+				resultHtml += '&#160;</td>';
+			}
+			else
+			{
+				resultHtml += result + '</td>';
+			}
+			resultHtml += '</tr>';
+			testSummaryTable += resultHtml;
+			
+			// start, finish and time
+			var startHtml = '<th class="vrowlabel">Start</th><td class="value">' + start + '</td>';
+			var finishHtml = '<th class="vrowlabel">Finish</th><td class="value">' + finish + '</td>';
+			var timeHtml = '<th class="vrowlabel">Time</th><td class="value">' + time + '</td>';
+			
+			testSummaryTable += '<tr>' + startHtml + finishHtml + timeHtml + '</tr>';
+			
+			// description
+			var descContent = '&#160;';
+			if (description !== '')
+			{
+				descContent = description;
+			}
+			var descHtml = '<tr><th class="vrowlabel">Description</th><td class="value" colspan="5">' + descContent + '</td></tr>';
+			
+			testSummaryTable += descHtml;
+			
+			// User fields
+			var userFieldsContent = 'N/A';
+			
+			if ($(this).children('userfields').length !== 0) {
+				if ($(this).children('userfields').children('userfield').length !== 0) {
+					userFieldsContent = '';
+					var firstUserField = true;
+					$(this).children('userfields').children('userfield').each(function() {
+						if (firstUserField == true) { firstUserField = false; }
+						else { userFieldsContent += ', '; }
+						userFieldsContent += '[ ' + $(this).children('name').text() + ' = "' + $(this).children('value').text() + '" ]';
+					});
+				}
+			}
+			var userFieldsHtml = '<tr><th class="vrowlabel">User Fields</th><td class="value" colspan="5">' + userFieldsContent + '</td></tr>';
+			testSummaryTable += userFieldsHtml;
+			
+			// table
+			var tableHtml = '<tr><th class="vrowlabel">Table</th><td class="value" colspan="5">' + tablename + '</td></tr>'
+							+ '<tr><th class="vrowlabel">File</th><td class="value" colspan="5">' + tablefile + '</td></tr>';
+			
+			testSummaryTable += tableHtml;
+			
+			// datasource
+			
+			if (datadriven == 'True')
+			{
+				var datasourceHtml = '<tr><th class="vrowlabel">Datasource</th><td class="value" colspan="5">' + datasource + '</td></tr>';
+				$(this).children('datafiles').children('datafile').each(function() {
+					var relpath = $(this).attr('relativepath');
+					var datafileHtml = '<tr><th class="vrowlabel">Datafile</th><td class="value" colspan="5">'
+										+ '<a onclick=\'viewDataFile("' + runid + '","' + id + '"); event.returnValue = false; return false;\' href="#">' + $(this).attr('name') + '</a><br/></td></tr>';
+					datasourceHtml += datafileHtml;
+				});
+				
+				testSummaryTable += datasourceHtml;
+			}
+			
+			// screenshot
+			var imageHtml = '<tr><th class="vrowlabel">Screenshot</th><td class="value" colspan="5">';
+			if (testimage == '')
+			{
+				imageHtml += '';
+			}
+			else
+			{
+				imageHtml += '<a target="new" href="' + testimage + '">View</a>';
+			}
+			imageHtml += '</td></tr>';
+			testSummaryTable += imageHtml;
+			
+			// messages and output files
+			var messages = $(this).children('messages');
+			var outputfiles = $(this).children('outputfiles');
+			if (messages.length !== 0)
+			{
+				var msghtml = '<tr><th class="vrowlabel">Messages</th><td class="value" colspan="5">';
+				$(messages).children('message').each(function() {
+					msghtml += $(this).text() + '<br/>';
+				});
+				msghtml += '</td></tr>';
+				testSummaryTable += msghtml;
+			}
+			if (outputfiles.length !== 0)
+			{
+				var outputhtml = '<tr><th class="vrowlabel">Files</th><td class="value" colspan="5">';
+				$(outputfiles).children('outputfile').each(function() {
+					outputhtml += '<a href="' + $(this).attr('file') + '">' + $(this).attr('name') + '</a><br/>';
+				});
+				outputhtml += '</td></tr>';
+				testSummaryTable += outputhtml;
+			}
+			
+			testSummaryTable += '</table><p/>';
+			
+			$('#testSubPanel').append(testSummaryTable);
+			
+			if ($(this).children('iteration').filter(function() {
+					return $(this).children('dependency').length !== 0;
+				}).length !== 0)
+			{
+				
+				var depTableUniqueId = 'dependencyTable';
+				var dependencyTable = '<table class="summary" id="dependencyTable"><tr><th class="spanninglabel" colspan="4">Dependencies</th></tr></table>';
+				$('#testSubPanel').append(dependencyTable);
+				
+				$(this).children('iteration').filter(function() {
+					return $(this).children('dependency').length !== 0;
+				}).each(function() {
+					
+					$(this).children('dependency').each(function() {
+						var depResult = $(this).children('result').text();
+						var depId = $(this).children('id').text();
+						var resultHtmlClass = "value";
+					
+						if (depResult == "Pass")
+						{
+							resultHtmlClass = "valuepassclick";
+						}
+						else if (depResult == "Fail" || depResult == "Aborted" || depResult == "Basestate" || depResult == "Error" || depResult == "Aborted")
+						{
+							resultHtmlClass = "valuefailclick";
+						}
+						else if (depResult == "NotRun")
+						{
+							resultHtmlClass = "valuenotrun";
+						}
+						else if (depResult == "Dependency" || depResult == "Inconclusive")
+						{
+							resultHtmlClass = "valuefailprereqclick";
+						}
+						var dep = '<tr><th class="rowlabel">Test</th><td class="' + resultHtmlClass + '">' + depId + '</td><th class="rowlabel">Result</th>'
+									+ '<td class="value">' + depResult + '</td>';
+						
+						$('#dependencyTable').append(dep);
+					});
+					
+				});
+			}
+			$('#TestDiv').append('<p/>');
+			
+			// iterations
+			if (datadriven == 'True')
+			{
+				var iterheading = '<div class="panelheading">Iterations</div>';
+				$('#TestDiv').append(iterheading);			
+				var iterpanel = '<div class="subpanel" id="iterSubPanel"></div>';
+				$('#TestDiv').append(iterpanel);
+				
+				var testcount = $(this).children('testcount').text();
+				var passcount = $(this).children('passcount').text();
+				var failcount = $(this).children('failcount').text();
+				
+				var ddtHtml = '<table class="summary"><tr><th class="rowlabel">Iterations</th><td class="value">'
+							+ testcount + '</td><th class="rowlabel">Passed</th><td class="value">'
+							+ passcount + '</td><th class="rowlabel">Failed</th><td class="value">'
+							+ failcount + '</td><td>&#160;&#160;&#160;</td>';
+				
+				if (ns_summary.showFailIterationsOnly == false)
+				{
+					ddtHtml += '<td><input type="button" id="showOnlyFailedIterations" value="Show Fails Only"></td>';
+				}
+				else
+				{
+					ddtHtml += '<td><input type="button" id="showOnlyFailedIterations" value="Show All"></td>';
+				}
+				ddtHtml += '</tr></table><p/>';
+				$('#iterSubPanel').append(ddtHtml);
+				var iterTableUniqueId = 'iterationsTable';
+				var iterationsTable = '<div id="iterationsTableDiv"><table class="results" id="' + iterTableUniqueId + '"></table></div>';
+				$('#iterSubPanel').append(iterationsTable);
+				
+				var this_test = this;
+				var this_runid = runid;
+				var this_testindex = testindex;
+				$('#showOnlyFailedIterations').data('test', this_test).data('runid', this_runid).data('testindex', this_testindex);
+				
+				loadIterations(this_test, this_runid, this_testindex);
+				
+				$('#iterSubPanel').append('<p/><p/>');		
+			}
+			$('#TestDiv').append('<p/>');
+			
+			var subtestsheading = '<div class="panelheading">Test Details</div>';
+			var prevNext = '';
+			if (datadriven == 'True')
+			{
+				var iterName = $(this).children('iteration').filter(function() {
+					return $(this).attr('row') == row;
+				}).attr('name');
+				var intRow = parseInt(row, 10);
+				var prevIter = $(this).children('iteration').filter(function() {
+					if (ns_summary.showFailIterationsOnly == true)
+					{
+						return (parseInt($(this).attr('row')) < intRow) && ($(this).children('result').text() !== 'Pass');
+					}
+					else
+					{
+						return (parseInt($(this).attr('row')) < intRow);
+					}
+				});
+				var nextIter = $(this).children('iteration').filter(function() {
+					if (ns_summary.showFailIterationsOnly == true)
+					{
+						return (parseInt($(this).attr('row')) > intRow) && ($(this).children('result').text() !== 'Pass');
+					}
+					else
+					{
+						return (parseInt($(this).attr('row')) > intRow);
+					}
+				});
+
+				ns_summary.prevRow = '';
+				ns_summary.nextRow = '';
+				if (prevIter.length !== 0)
+				{
+					var last = prevIter.last();
+					ns_summary.prevRow = $(last).attr('row');
+				}
+				
+				if (nextIter.length !== 0)
+				{
+					var first = nextIter.first();
+					ns_summary.nextRow = $(first).attr('row');
+				}
+				
+				if (ns_summary.prevRow == '')
+				{
+					//alert('c:' + ns_summary.prevRow);
+					prevNext += '<img class="prevIterNull" src="leftArrowGrey.png" title="Previous Iteration"/>';
+				}
+				else
+				{
+					prevNext += '<img class="prevIter" src="leftArrow.png" title="Previous Iteration"/>';
+				}
+				
+				if (ns_summary.nextRow == '')
+				{
+					prevNext += '<img class="nextIterNull" src="rightArrowGrey.png" title="Next Iteration"/>';
+				}
+				else
+				{
+					prevNext += '<img class="nextIter" src="rightArrow.png" title="Next Iteration"/>';
+				}
+
+				subtestsheading = '<div class="panelheading">' + prevNext + 'Iteration Details - Row: ' + row + ' - Name: ' + iterName + '</div>';
+			}	
+			$('#TestDiv').append(subtestsheading);
+			
+			var subtestspanel = '<div class="subpanel" id="subtestsPanel"></div>';
+			$('#TestDiv').append(subtestspanel);
+			
+			var iter = $(this).children('iteration').filter(function() {return $(this).attr("row") == row;});
+			
+			var testcount = $(iter).children('testcount').text();
+			var passcount = $(iter).children('passcount').text();
+			var failcount = $(iter).children('failcount').text();
+			var iterStart = $(iter).children('start').text();
+			var iterFinish = $(iter).children('finish').text();
+			var iterTime = $(iter).children('time').text();
+
+			var iterationSummary = '<table class="summary"><tr><th class="rowlabel">Start</th><td class="value">' + iterStart + '</td>'
+								+ '<th class="rowlabel">Finish</th><td class="value">' + iterFinish + '</td>'
+								+ '<th class="rowlabel">Time</th><td class="value">' + iterTime + '</td></tr></table>';
+			iterationSummary += '<p/><table class="summary"><tr><th class="rowlabel">Subtests</th><td class="value">' + testcount + '</td>'
+								+ '<th class="rowlabel">Passed</th><td class="value">' + passcount + '</td>'
+								+ '<th class="rowlabel">Failed</th><td class="value">' + failcount + '</td></tr></table>';					
+			$('#subtestsPanel').append(iterationSummary);
+			$('#subtestsPanel').append('<p/>');
+			
+			// Basestate
+			var loop2 = 0;
+			$(iter).children('basestate').each(function() {
+				var index = $(this).children('index').text();
+				var bsindex = '|basestate' + index + '|';
+				var action = $(this).children('action').text();
+				var index = $(this).children('index').text();
+				var start = $(this).children('start').text();
+				var finish = $(this).children('finish').text();
+				var time = $(this).children('time').text();
+				var result = $(this).children('result').text();
+				
+				var error_no = '';
+				var error_msg = '';
+				var error_no_node = $(this).children('error_no');
+				var error_msg_node = $(this).children('error_msg');
+				
+				if (error_no_node.length !== 0)
+				{
+					error_no = $(this).children('error_no').text();
+				}
+				
+				if (error_msg_node.length !== 0)
+				{
+					error_msg = $(this).children('error_msg').text();
+				}
+				
+				var bsheading = '<div class="expandableheading"><table class="resultsheading"><tr>';
+				
+				var buttonHtml = "";			
+				if (subtestid.indexOf(bsindex) !== -1)
+				{
+					buttonHtml = '<td class="expbuttonbs" id="bsExpButton' + loop1 + '_' + loop2 +  '">-</td>';				
+				}
+				else
+				{
+					buttonHtml = '<td class="expbuttonbs" id="bsExpButton' + loop1 + '_' + loop2 + '">+</td>';
+				}
+				
+				bsheading += buttonHtml;
+				
+				var success = $(this).children('success').text();
+				if (success == 'True')
+				{
+					bsheading += '<td class="valuepass">Pass</td>';
+				}
+				else
+				{
+					bsheading += '<td class="valuefail">Fail</td>';
+				}
+				
+				bsheading += '<td class="expandabletitle">&#160;Basestate - ' + $(this).children('action').text() + '</td>';				
+				bsheading += '</tr></table></div>';
+				
+				$('#subtestsPanel').append(bsheading);
+				$('#bsExpButton' + loop1 + '_' + loop2).data('runid', runid).data('testindex', testindex).data('subtestid', subtestid).data('bsindex', bsindex).data('rmcall', rmcall).data('failonly', failonly).data('row', row);
+				
+				if (subtestid.indexOf(bsindex) !== -1 || subtestid == '*')
+				{
+					var bspanel = '<div class="subpanel"><table class="summary"><tr class="heading"><th>&#160;&#160;&#160;&#160;</th><th>Action</th>'
+								+ '<th>Start</th><th>Finish</th><th>Time</th><th>Result</th><th>Error No.</th><th>Error Msg.</th></tr>'
+								+ '<tr><td class="value">' + index + '</td><td class="value">' + action + '</td><td class="value">' + start + '</td><td class="value">' + finish + '</td><td class="value">'
+								+ time + '</td><td class="value">' + result + '</td><td class="value">' + error_no + '</td><td class="value">' + error_msg + '</td></tr>';
+								
+					$(this).children('info').each(function() {
+						var infoHtml = '<tr><th class="rowlabel">&gt;</th><td class="message" colspan="11">' + $(this).text() + '</td></tr>';
+						bspanel += infoHtml;
+					});
+					
+					bspanel += '</table></div>';						
+					$('#subtestsPanel').append(bspanel);	
+					$('#subtestsPanel').append('<p/>');	
+				}				
+				loop2++;
+			});
+			
+			// Subtest
+			loop2 = 0;
+			$(iter).children('subtest').each(function() {
+				var subtestindex = $(this).children('index').text();
+				var expindex = '|' + subtestindex + '|';
+				var start = $(this).children('start').text();
+				var finish = $(this).children('finish').text();
+				var time = $(this).children('time').text();
+				var description = $(this).children('description').text();
+				var tablename = $(this).children('table').attr('name');
+				var tablefile = $(this).children('table').attr('file');
+				var testcount = $(this).children('testcount').text();
+				var passcount = $(this).children('passcount').text();
+				var failcount = $(this).children('failcount').text();
+				var thissubtestid = $(this).children('id').text();
+				var subtestheading = '<div class="expandableheading"><table class="resultsheading"><tr>';
+				var buttonHtml = "";
+			
+				if (subtestid.indexOf(expindex) !== -1)
+				{
+					buttonHtml = '<td class="expbuttonsubtest" id="subtestExpButton' + loop1 + '_' + loop2 +  '">-</td>';				
+				}
+				else
+				{
+					buttonHtml = '<td class="expbuttonsubtest" id="subtestExpButton' + loop1 + '_' + loop2 + '">+</td>';
+				}
+				
+				subtestheading += buttonHtml;
+				
+				var success = $(this).children('success').text();
+				if (success == 'True')
+				{
+					subtestheading += '<td class="valuepass">Pass</td>';
+				}
+				else
+				{
+					subtestheading += '<td class="valuefail">Fail&#160;</td>';
+				}
+				
+				subtestheading += '<td class="expandabletitle">&#160;' + subtestindex + ' - Sub-test: ' + tablename + '&#160;-&#160;' + thissubtestid + '</td>';				
+				subtestheading += '</tr></table></div>';
+				
+				$('#subtestsPanel').append(subtestheading);
+				$('#subtestExpButton' + loop1 + '_' + loop2).data('runid', runid).data('testindex', testindex).data('subtestid', subtestid).data('expindex', expindex).data('rmcall', rmcall).data('failonly', failonly).data('row', row);
+				if (subtestid.indexOf(expindex) !== -1 || subtestid == '*')
+				{					
+					var subtestpanel = '<div class="subpanel">';
+					
+					var tableResults = '<table class="results"><tr><th class="vrowlabel">Start</th><td class="value">'
+									+ start + '</td><th class="vrowlabel">Finish</th><td class="value">' + finish + '</td><th class="vrowlabel">Time</th>'
+									+ '<td class="value">' + time + '</td></tr><tr><th class="vrowlabel">Description</th><td class="value" colspan="7">'
+									+ description + '</td></tr><tr><th class="vrowlabel">Table</th><td class="value" colspan="7">' + tablename + '</td></tr><tr>'
+									+ '<th class="vrowlabel">File</th><td class="value" colspan="7">' + tablefile + '</td></tr></table>';
+							
+					var tableSummary1 = '<table class="summary"><tr><th class="rowlabel">Steps</th><td class="value">' 
+										+ testcount + '</td><th class="rowlabel">Passed</th><td class="value">'
+										+ passcount + '</td><th class="rowlabel">Failed</th><td class="value">'
+										+ failcount + '</td></tr></table><p/>';
+					
+					var tableSummary2 = '<table class="summary"><tr class="heading"><th>Step</th><th>Object</th><th>Action</th><th>Data</th>'
+									+ '<th>Start</th><th>Finish</th><th>Time</th><th>Result</th><th>Expected</th><th>Actual</th><th>Error No.</th>'
+									+ '<th>Error Msg.</th><th>Image</th></tr>';
+					
+					$(this).children('step').each(function() {						
+						var index = $(this).children('index').text();
+						var object = $(this).children('object').text();
+						var data = $(this).children('data').text();
+						var action = $(this).children('action').text();
+						var start = $(this).children('start').text();
+						var finish = $(this).children('finish').text();
+						var time = $(this).children('time').text();
+						var result = $(this).children('result').text();
+						var expected = $(this).children('expected');
+						var actual = $(this).children('actual');
+						var error_no = $(this).children('error_no').text();
+						var error_msg = $(this).children('error_msg').text();
+						var image = $(this).children('image').text();
+						
+						var stepHtml = '<tr>';
+						var success = $(this).children('success').text();
+						if (success == 'True')
+						{
+							stepHtml += '<td class="valuepass">' + index + '</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="valuefail">' + index + '</td>';
+						}
+						
+						stepHtml += '<td class="value">' + object + '</td><td class="value">' + action + '</td>';
+						if (data == '')
+						{
+							stepHtml += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="value">' + data + '</td>';
+						}
+						
+						stepHtml += '<td class="value">' + start + '</td><td class="value">' + finish + '</td>';
+						stepHtml += '<td class="value">' + time + '</td><td class="value">' + result + '</td>';
+						
+						if (expected.length == 0)
+						{
+							stepHtml += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="value">[' + expected.text() + ']</td>';
+						}
+						
+						if (actual.length == 0)
+						{
+							stepHtml += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="value">[' + actual.text() + ']</td>';
+						}
+						
+						if (error_no == '')
+						{
+							stepHtml += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="value">' + error_no + '</td>';
+						}
+						
+						if (error_msg == '')
+						{
+							stepHtml += '<td class="value">&#160;</td>';
+						}
+						else
+						{
+							stepHtml += '<td class="value">' + error_msg + '</td>';
+						}
+						
+						if (image == '')
+						{
+							if ($(this).parent().parent().children('image').length !== 0)
+							{
+								var img = $(this).parent().parent().children('image').filter(function() {
+												return $(this).attr('subtest_index') == subtestindex
+														&& $(this).attr('step_index') == index;
+										  });
+								if (img.length !== 0)
+								{
+									var imgLink = img.first().text();
+									stepHtml += '<td class="value"><a target="new" href="' + imgLink + '">View</a></td>';
+								}
+								else
+								{
+									stepHtml += '<td class="value">&#160;</td>';
+								}
+							}
+							else
+							{
+								stepHtml += '<td class="value">&#160;</td>';
+							}
+						}
+						else
+						{
+							stepHtml += '<td class="value"><a target="new" href="' + image + '">Show Image</a></td>';
+						}
+						
+						stepHtml += '</tr>';
+						$(this).children('info').each(function() {
+							stepHtml += '<tr><th class="rowlabel">&gt;</th><td class="message" colspan="12">' + $(this).text() + '</td></tr>';
+						});
+						
+						$(this).children('timer').each(function() {
+							stepHtml += '<tr><th class="rowlabel">&gt;</th><td class="message" colspan="12">' + 
+							'Transaction Timer: name=' + $(this).attr('name') + ' time=' + $(this).attr('time') + '</td></tr>';
+						});
+						
+						tableSummary2 += stepHtml;
+					});
+					
+					subtestpanel += tableResults + '<p/>' + tableSummary1 + tableSummary2 + '</div>';
+					$('#subtestsPanel').append(subtestpanel);	
+					$('#subtestsPanel').append('<p/>');
+				}				
+				loop2++;
+			});
+			
+			// Transaction timers
+			var timerscount = 0;
+			var timers = $(this).find('timer');
+			if (timers.length !== 0)
+			{
+				var timersHtml = '<p><div class="panelheading">Transaction Timers</div><div class="subpanel"><table class="summary" id="timersSummary"><thead><tr><th class="headerSort">Iteration</th><th class="headerSort">Name</th><th class="headerSort">Time</th></tr></thead><tbody/></table></div>';
+				$('#TestDiv').append(timersHtml);
+				$(timers).each(function() {
+					var iterName = $(this).parent().parent().parent().attr('name');
+					var timerName = $(this).attr('name');
+					var timerTime = $(this).attr('time');
+					var timer = '<tr><td class="value">' + iterName + '</td><td class="value">' + timerName + '</td><td class="value">' + timerTime + '</td></tr>';
+					$('#timersSummary tbody').append(timer);
+				});
+				$('#timersSummary').tablesorter();
+			}
+			loop1++;
+			$('#TestDiv').append('<p/>');
+			$('#TestDiv').append(heading);
+
+		});
+	}
+	
+	$('#spinner').hide();
+	if (ns_summary.riskReporting == false)
+	{
+		hideRiskReporting();
+	}
+}
+
+function disableRiskReporting()
+{
+	ns_summary.riskReporting = false;	
+}
+
+function hideRiskReporting()
+{
+	$('[id=RiskReporting]').css('display', 'none');
+	$('[id=Confidence]').css('display', 'none');
+	$('[id=ConfidenceLabel]').css('display', 'none');	
+}
+
+ns_summary = {};
+
+ns_summary.xmlFile = "";
+ns_summary.showFailOnly = "";
+ns_summary.expandRun = "";
+ns_summary.showFailIterationsOnly = false;
+ns_summary.iterTableScrollPosition = 0;
+ns_summary.currentRow = '';
+ns_summary.selectedRow = -1;
+ns_summary.inRunMasterContext = true;
+ns_summary.currentRun = '';
+ns_summary.currentTestIndex = '';
+ns_summary.prevRow = '';
+ns_summary.nextRow = '';
+ns_summary.prevRun = '';
+ns_summary.prevTestIndex = '';
+ns_summary.nextRun = '';
+ns_summary.nextTestIndex = '';
+ns_summary.runFromALM = false;
+ns_summary.riskReporting = true;
+
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
+ 
+	// window object
+	var win = window.top || window;
+	
+	// session store
+	var store = (win.name ? JSON.parse(win.name) : {});
+	
+	// save store on page unload
+	function Save() {
+		win.name = JSON.stringify(store);
+	};
+	
+	// page unload event
+	if (window.addEventListener) window.addEventListener("unload", Save, false);
+	else if (window.attachEvent) window.attachEvent("onunload", Save);
+	else window.onunload = Save;
+
+	// public methods
+	return {
+	
+		// set a session variable
+		set: function(name, value) {
+			store[name] = value;
+		},
+		
+		// get a session value
+		get: function(name) {
+			return (store[name] ? store[name] : undefined);
+		},
+		
+		// clear session
+		clear: function() { store = {}; },
+		
+		// dump session data
+		dump: function() { return JSON.stringify(store); }
+ 
+	};
+ 
+ })();
+ 
+$('img.prevTest').live('click',function() {
+	showTest(ns_summary.prevRun, ns_summary.prevTestIndex);
+});
+
+$('img.nextTest').live('click',function() {
+	showTest(ns_summary.nextRun, ns_summary.nextTestIndex);
+});
+$('img.prevIter').live('click',function() {
+	//var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	ns_summary.selectedRow = ns_summary.prevRow;
+	loadPage(ns_summary.xmlFile, "Test", ns_summary.currentRun, ns_summary.currentTestIndex, '', '',"","",ns_summary.prevRow);
+	//$(window).scrollTop(scroll);
+});
+
+$('img.nextIter').live('click',function() {
+	//var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	ns_summary.selectedRow = ns_summary.nextRow;
+	loadPage(ns_summary.xmlFile, "Test", ns_summary.currentRun, ns_summary.currentTestIndex, '', '',"","",ns_summary.nextRow);
+	//$(window).scrollTop(scroll);
+});
+
+$('#showAllButton').live('click',function() {
+	if (ns_summary.showFailOnly == 'y')
+	{
+		ns_summary.showFailOnly = '';
+	}
+	else
+	{
+		ns_summary.showFailOnly = 'y';
+	}
+    loadPage(ns_summary.xmlFile, "Run", "||run_master||", "", '', "", "", ns_summary.showFailOnly, "");
+});
+
+$('#showOnlyFailedIterations').live('click',function() {
+	if (ns_summary.showFailIterationsOnly == false)
+	{
+		ns_summary.showFailIterationsOnly = true;
+		$('#showOnlyFailedIterations').attr('value', 'Show All');
+	}
+	else
+	{
+		ns_summary.showFailIterationsOnly = false;
+		$('#showOnlyFailedIterations').attr('value', 'Show Fails Only');
+	}
+	loadIterations($(this).data('test'), $(this).data('runid'), $(this).data('testindex'));
+});
+
+function loadIterations(test, runid, testindex)
+{
+	$('#iterationsTable').html('');
+	$('#iterationsTable').append('<tr class="heading"><th>Row</th><th>Name</th><th>Result</th><th>Finish</th><th>Time</th><th>Screenshot</th></tr>');
+	var count = 0;
+	$(test).children('iteration').each(function() {
+		var result = $(this).children('result').text(); 
+		if ((ns_summary.showFailIterationsOnly == true && result !== 'Pass') || ns_summary.showFailIterationsOnly == false)
+		{	
+			count++;
+			var thisrow = $(this).attr('row');
+			var name = $(this).attr('name'); 
+			var finish = $(this).children('finish').text();
+			var time = $(this).children('time').text(); 
+			
+			var iterationHtml;
+			if (thisrow == ns_summary.selectedRow)
+			{
+				iterationHtml = '<tr class="resultrow" style="font-weight:bold">';
+			}
+			else
+			{
+				iterationHtml = '<tr class="resultrow">';
+			}
+			iterationHtml += '<td class="value">' + thisrow + '</td>';
+			var iterationHtmlClass = "value";
+					
+			if (result == "Pass")
+			{
+				iterationHtmlClass = "valuepassclick";
+			}
+			else if (result == "Fail" || result == "Aborted" || result == "Basestate" || result == "Error" || result == "Aborted")
+			{
+				iterationHtmlClass = "valuefailclick";
+			}
+			else if (result == "NotRun")
+			{
+				iterationHtmlClass = "valuenotrun";
+			}
+			else if (result == "Dependency" || result == "Inconclusive")
+			{
+				iterationHtmlClass = "valuefailprereqclick";
+			}
+			var iteruniqueid = 'iter_' + runid + '_' + testindex + '_' + thisrow;
+			
+			iterationHtml += '<td class="' + iterationHtmlClass + '" id="' + iteruniqueid + '">' + name + '</td>';
+			
+			var resultHtml = '&#160;';
+			if (result !== '')
+			{
+				resultHtml = result;
+			}
+			
+			iterationHtml += '<td class="value">' + resultHtml + '</td>';
+			iterationHtml += '<td class="value">' + finish + '</td>';
+			iterationHtml += '<td class="value">' + time + '</td>';
+			
+			var testimageNode = $(this).children('image');
+			
+			var imageHtml = '<td class="value">';
+			if (testimageNode.length == 0)
+			{
+				imageHtml += '&#160;</td>';
+			}
+			else
+			{
+				imageHtml += '<a target="new" href="' + testimageNode.text() + '">View</a></td>';
+			}
+			
+			iterationHtml += imageHtml;
+			
+			iterationHtml += '</div>';
+			iterationHtml += '</tr>';
+			$('#iterationsTable').append(iterationHtml);
+			$('#' + iteruniqueid).data('runid', runid).data('testindex', testindex).data('row', thisrow);	
+		}		
+	});	
+	var maxheight = count * 25 + 10;
+	maxheight = Math.max(maxheight, 50);
+	maxheight = Math.min(maxheight, 300);
+	$('#iterationsTableDiv').attr('style', 'height: ' + maxheight + 'px; width: 550px; overflow: auto;');
+	$('#iterationsTableDiv').scrollTop(ns_summary.iterTableScrollPosition);
+}
+
+$('.resultrow').live("mouseover", function() {
+	$(this).children().css('background-color', 'lightblue');
+}).live("mouseout", function() {
+    $(this).children().css('background-color', '');
+});
+
+$('.expbuttonrunmaster').live('click',function() {
+	var id = $(this).data("runid");
+	var exp = $(this).data("expname");
+	var index = $(this).data("index");
+	var para = "";
+	var offset = id.indexOf(exp);
+	if (offset == -1)
+	{
+		parameter = id + exp;
+	}
+	else
+	{
+		parameter = id.substring(0, offset) + id.substring(offset + exp.length);
+	}
+
+	loadPage(ns_summary.xmlFile, 'Run', parameter, '', '', '', '', ns_summary.showFailOnly, '');
+});
+
+$('.expbuttonrun').live('click',function() {
+	var id = $(this).data("runid");
+	var exp = $(this).data("expname");
+	var index = $(this).data("index");
+	var para = "";
+	var offset = id.indexOf(exp);
+	if (offset == -1)
+	{
+		parameter = id + exp;
+	}
+	else
+	{
+		parameter = id.substring(0, offset) + id.substring(offset + exp.length);
+	}
+	var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	loadPage(ns_summary.xmlFile, "Run", parameter, index, '', "", "", ns_summary.showFailOnly, "");
+	$(window).scrollTop(scroll);
+});
+$('.runpassclick').live('click',function() {
+	var id = $(this).data("runid");
+	var exp = $(this).data("expname");
+	var index = $(this).data("index");
+	var para = "";
+	var offset = id.indexOf(exp);
+	if (offset == -1)
+	{
+		parameter = id + exp;
+	}
+	else
+	{
+		parameter = id.substring(0, offset) + id.substring(offset + exp.length);
+	}
+
+	loadPage(ns_summary.xmlFile, "Run", parameter, index, '', "", "", ns_summary.showFailOnly, "");
+});
+$('.runfailclick').live('click',function() {
+	var id = $(this).data("runid");
+	var exp = $(this).data("expname");
+	var index = $(this).data("index");
+	var para = "";
+	var offset = id.indexOf(exp);
+	if (offset == -1)
+	{
+		parameter = id + exp;
+	}
+	else
+	{
+		parameter = id.substring(0, offset) + id.substring(offset + exp.length);
+	}
+
+	loadPage(ns_summary.xmlFile, "Run", parameter, index, '', "", "", ns_summary.showFailOnly, "");
+});
+$('.expbuttonsubtest').live('click',function() {
+	var runid = $(this).data("runid");
+	var testindex = $(this).data("testindex");
+	var expindex = $(this).data("expindex");
+	var subtestid = $(this).data("subtestid");
+	var rmcall = $(this).data("rmcall");
+	var failonly = $(this).data("failonly");
+	var row = $(this).data("row");
+	var para = "";
+	var offset = subtestid.indexOf(expindex);
+	if (offset == -1)
+	{
+		parameter = subtestid + expindex;
+	}
+	else
+	{
+		parameter = subtestid.substring(0, offset) + subtestid.substring(offset + expindex.length);
+	}
+	var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	loadPage(ns_summary.xmlFile, "Test", runid, testindex, '', parameter, rmcall, ns_summary.showFailOnly, row);
+	$(window).scrollTop(scroll);
+});
+
+$('.expbuttonbs').live('click',function() {
+	var runid = $(this).data("runid");
+	var testindex = $(this).data("testindex");
+	var bsindex = $(this).data("bsindex");
+	var subtestid = $(this).data("subtestid");
+	var rmcall = $(this).data("rmcall");
+	var failonly = $(this).data("failonly");
+	var row = $(this).data("row");
+	var para = "";
+	var offset = subtestid.indexOf(bsindex);
+	if (offset == -1)
+	{
+		parameter = subtestid + bsindex;
+	}
+	else
+	{
+		parameter = subtestid.substring(0, offset) + subtestid.substring(offset + bsindex.length);
+	}
+	var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	loadPage(ns_summary.xmlFile, "Test", runid, testindex, '', parameter, rmcall, ns_summary.showFailOnly, row);
+	$(window).scrollTop(scroll);
+});
+
+window.onbeforeprint = function() {
+	$('#showAllButton').css('visibility', 'hidden');
+	if(location.search.length > 1) {
+		loadPage(ns_summary.xmlFile, "Test", ns_summary.currentRun, ns_summary.currentTestIndex, '', '*', '', '', '');
+		$('#showOnlyFailedIterations').css('visibility', 'hidden');
+	}
+};
+window.onafterprint = function() {
+	$('#showAllButton').css('visibility', 'visible');
+	if(location.search.length > 1) {	
+		loadPage(ns_summary.xmlFile, "Test", ns_summary.currentRun, ns_summary.currentTestIndex, '', ns_summary.currentSubtestId, '', '', '');
+		$('#showOnlyFailedIterations').css('visibility', 'visible');
+	}
+};
+
+function gotoTestOrIteration(element)
+{
+	var run = $(element).data("runid");
+	var index = $(element).data("testindex");
+	var row = $(element).data("row");
+	
+	if (run == null || index == null)
+	{
+		return;
+	}
+	if (row !== '')
+	{
+		ns_summary.iterTableScrollPosition = $('#iterationsTableDiv').scrollTop();
+		ns_summary.selectedRow = row;
+		loadPage(ns_summary.xmlFile, "Test", run,index,'', '',"","",row);
+	}
+	else
+	{
+		ns_summary.inRunMasterContext = false;
+		if ($(element).data('isRunMaster'))
+		{
+			ns_summary.inRunMasterContext = true;
+		}
+		Session.set('inRunMaster', ns_summary.inRunMasterContext);
+		Session.set('showFailOnly', ns_summary.showFailOnly);
+		showTest(run, index);
+	}
+}
+
+$('.valueclick').live('click',function() {
+	gotoTestOrIteration(this);
+});
+$('.valuefailclick').live('click',function() {
+	gotoTestOrIteration(this);
+});
+$('.valuepassclick').live('click',function() {
+	gotoTestOrIteration(this);
+});
+$('.valuefailprereqclick').live('click',function() {
+	gotoTestOrIteration(this);
+});
+
+function showTest(runid,testindex)
+{
+	if(window.ActiveXObject)
+    {
+		document.open();
+		window.location.assign("index.html?runid=" + runid + "&testindex=" + testindex);
+		document.close();
+    }
+	else
+	{
+		window.location.assign("index.html?runid=" + runid + "&testindex=" + testindex);
+	}
+}
+
+// Navigates to data file
+function viewDataFile(run, test)
+{
+	if (ns_summary.runFromALM == true)
+	{
+		alert('Sorry, test data files are not available when running from ALM tools.\r\nYou can view the data within your ALM tool.');
+	}
+	else
+	{
+		var qs = '?run=' + run + '&test=' + test;
+		window.open('datafile.html' + qs);
+	}
+}
+
+// Calculates the visual presentation of iteration results
+function getIterationResultsWidth(pass, fail, notrun) 
+{
+	var totalwidth = 80;
+	var total = pass + fail + notrun;
+	var ppass = 0;
+	var pfail = 0;
+	var pnotrun = totalwidth;
+
+	if (total !== 0)
+	{
+		ppass = Math.floor((1.0 * pass / total) * totalwidth);
+		pfail = Math.floor((1.0 * fail / total) * totalwidth);
+		pnotrun = Math.floor((1.0 * notrun / total) * totalwidth);
+	}
+	if (pass > 0) ppass = Math.max(10, ppass);
+	if (fail > 0) pfail = Math.max(10, pfail);
+	if (notrun > 0) pnotrun = Math.max(10, pnotrun);
+	
+	var w = ppass + pfail + pnotrun;
+	if (w != totalwidth)
+	{
+		var r = 1.0 * totalwidth / w;
+		ppass = Math.floor(ppass * r);
+		pfail = Math.floor(pfail * r);
+		pnotrun = Math.floor(pnotrun * r);
+	}
+	w = ppass + pfail + pnotrun;
+	if (w != totalwidth)
+	{
+		var diff = totalwidth - w;
+		if (pnotrun != 0) pnotrun += diff;
+		else if (pfail != 0) pfail += diff;
+		else ppass += diff;
+	}
+
+    return {
+        p: ppass,
+        f: pfail,
+		n: pnotrun
+    }
+}
+
+function parseXml(xml)
+{	
+	ns_summary.xmlFile = xml;
+
+	var QS_query = false;
+	var QS_runid = "";
+	var QS_testid = "";
+	var QS_testindex = "";
+	var QS_subtestid = "";
+	var QS_row = "";
+	
+	var row = "0";
+	if(location.search !== null)
+	{
+		if(location.search.length > 1) 
+		{	
+			QS_query=true;
+			querystring = location.search;
+			querystring = querystring.substring(1,querystring.length)
+			for(var i=0;i<querystring.split("&").length;i++)
+			{
+				tmpStr = querystring.split("&")[i].split("=")[0];
+				tmpValue = querystring.split("&")[i].split("=")[1];
+				switch(tmpStr)
+				{
+					case "runid":
+						QS_runid = tmpValue;
+						break;
+					case "testid":
+						QS_testid = tmpValue;
+						break;
+					case "testindex":
+						QS_testindex = tmpValue;
+						break;
+					case "subtestid":
+						QS_subtestid = tmpValue;
+						break;
+					case "row":
+						QS_row = tmpValue;
+						break;
+					default: 								
+				}
+			}
+		}	
+	}
+	
+	if (QS_query)
+	{
+		loadPage(xml, "Test", QS_runid,QS_testindex, QS_testid, QS_subtestid,"","",QS_row);
+	}
+	else
+	{
+		loadPage(xml, "Run", "||run_master||","",'', "","","","");
+	}
+}
+
+String.prototype.hashCode = function(){
+    var hash = 0, i, char;
+    if (this.length == 0) return hash;
+    for (i = 0; i < this.length; i++) {
+        char = this.charCodeAt(i);
+        hash = ((hash<<5)-hash)+char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+};
+
+</script>
+<style>
+.spinner {
+	position: fixed;
+	top: 30%;
+	left: 38%;
+	margin-left: 0px; /* half width of the spinner gif */
+	margin-top: 0px; /* half height of the spinner gif */
+	text-align:center;
+	z-index:1234;
+	overflow: auto;
+	width: 400px; /* width of the spinner gif */
+	height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+
+</style>
+
+</head>
+<body class="main">
+	<div class="mainheading" id="mainheadingProject"></div>
+	<p/>
+	<!-- ############################# RUN Display Page ############################## 
+	#	Page shows Run Summary information, and expandable panels for each run 
+	#  for testsuite
+	##############################################################################-->
+	
+	<!--
+	<div class="panelheading" id="panelheadingSuite"></div>
+	-->
+	
+	<div id='cssmenu' class="notprinted">
+		<ul >
+		   <li class='active'><a href='documentation.html'><span>Documentation</span></a></li>
+		   <li class='has-sub'><a href='statistics.html'><span>Statistics</span></a>
+			  <ul>
+				 <li><a href='objectusage.html'><span>Object Usage</span></a>
+				 </li>
+				 <li><a href='actionusage.html'><span>Action Usage</span></a>
+				 </li>
+				 <li><a href='subtestusage.html'><span>Subtest Usage</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='has-sub'><a href='index.html'><span>Results</span></a>
+			  <ul>
+				 <li><a href='timers.html'><span>Timers</span></a>
+				 </li>
+			  </ul>
+		   </li>
+		   <li class='last'><a href='testreport.html'><span>Report</span></a></li>
+		</ul>
+	</div>
+	
+	<p/>
+	<div align="left" class="notprinted">
+		<select id="failOnlyFilter">
+			<option value="ShowAll">Show all tests</option>
+			<option value="FailOnly">Show only failed tests</option>
+		</select>
+	</div>
+	<!--
+	<div class="subpanel">
+		<table class="summary">
+			<tr id="subpanelLinks">
+				<th class="vrowlabel">Links</th>
+				<td class="value" id="subpanelDocLink"></td>
+				<td class="value"><a href="objectusage.html">Object Usage</a></td>
+				<td class="value"><a href="actionusage.html">Action Usage</a></td>
+				<td class="value"><a href="subtestusage.html">Subtest Usage</a></td>
+				<td class="value"><a href="timers.html">Transaction Timers</a>
+			</tr>
+		</table>
+	</div>
+	-->
+	<p/>
+	
+	<div class="subpanel">
+		<table class="summary">
+			<tr id="subpanelSummary">
+				<th class="vrowlabel">Configuration</th>
+				<td class="value" id="subpanelConfig"></td>
+				<td>&#160;&#160;&#160;</td>
+				<td id="subpanelSummaryTab"/>
+				<td id="subpanelSummaryButton"/>
+			</tr>
+		</table>
+	</div>
+	<p/>
+	
+	<div id="spinner" class="spinner" style={display:none}>
+		<p>Please wait, Axe is loading results</p>
+		<img id="img-spinner" src="loader.gif" alt="Loading"/>
+	</div>	
+	
+	<div id="RunDiv">
+		<div id="Masters"></div>
+		<p/>
+		<div id="Runs"></div>
+	</div>
+	
+	<div id="TestDiv">
+	</div>
+	
+	<div id="loadError" class="spinner" style={display:none}>
+		<p>Axe failed to load results file. Please ensure the file "results.xml" exists.</p>
+	</div>	
+	
+	
+	<p class="copyright">Axe Test Automation Platform - <a href="http://www.odintech.com">Odin Technology</a> - <a href="http://www.odintech.com">www.odintech.com</a></p>
+
+</body>
+</html>

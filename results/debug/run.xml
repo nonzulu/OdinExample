@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <Option Name="CheckDependency" Value="True" />
+  <Option Name="RunConfiguration" Value="C:\Users\knzul\OneDrive\Documents\Axe Projects\Example\config\Selenium_Chrome.RunConfig.xlsx" />
+  <Option Name="RunName" Value="run_2019-10-17_11-19-42" />
+  <Tests>
+    <Test>OPLI001</Test>
+    <Test>OPLI010</Test>
+    <Test>OPLI020</Test>
+    <Test>OPRG001</Test>
+    <Test>OPRG002</Test>
+    <Test>OPRG003</Test>
+    <Test>OPRG004</Test>
+    <Test>OPRG005</Test>
+    <Test>OPRG010</Test>
+    <Test>OPRG100_01</Test>
+    <Test>OPRG100_02</Test>
+    <Test>OPLO001</Test>
+    <Test>OPAD001</Test>
+    <Test>OPAD002</Test>
+  </Tests>
+</RunSettings>
